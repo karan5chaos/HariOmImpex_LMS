@@ -50,6 +50,12 @@
     <Compile Include="Forms\Add_new_client_form.Designer.cs">
       <DependentUpon>Add_new_client_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Backup_manager_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Backup_manager_form.Designer.cs">
+      <DependentUpon>Backup_manager_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Main_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Add_new_client_form.resx">
       <DependentUpon>Add_new_client_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Backup_manager_form.resx">
+      <DependentUpon>Backup_manager_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>

@@ -119,11 +119,11 @@ namespace HariOmImpex_LMS
             this.backupManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.queryBuilderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip5 = new System.Windows.Forms.MenuStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.main_splitcontainer)).BeginInit();
             this.main_splitcontainer.Panel1.SuspendLayout();
             this.main_splitcontainer.Panel2.SuspendLayout();
@@ -170,9 +170,9 @@ namespace HariOmImpex_LMS
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.menuStrip5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
-            this.menuStrip5.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox2
@@ -339,6 +339,7 @@ namespace HariOmImpex_LMS
             this.edit_mode_button.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.edit_mode_button.Size = new System.Drawing.Size(107, 23);
             this.edit_mode_button.Text = "Edit Mode (Off)";
+            this.edit_mode_button.Click += new System.EventHandler(this.edit_mode_button_Click);
             // 
             // toggleSearchToolStripMenuItem1
             // 
@@ -1110,10 +1111,10 @@ namespace HariOmImpex_LMS
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.menuStrip5.ResumeLayout(false);
             this.menuStrip5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

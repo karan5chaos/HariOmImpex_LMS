@@ -59,7 +59,8 @@ namespace HariOmImpex_LMS
 
         private void backupManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+			Backup_manager_form backup_Manager = new Backup_manager_form();
+			backup_Manager.ShowDialog();
         }
 
         private void aboutApplicationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -72,5 +73,26 @@ namespace HariOmImpex_LMS
 			Add_new_client_form add_New = new Add_new_client_form();
 			add_New.ShowDialog();
         }
+
+        private void edit_mode_button_Click(object sender, EventArgs e)
+        {
+			if (client_basic_datagrid.Rows.Count > 0)
+			{
+				if (!client_basic_datagrid.ReadOnly)
+				{
+					client_basic_datagrid.ReadOnly = true;
+					edit_mode_button.Text = "Edit mode (Off)";
+					edit_mode_button.BackColor = Color.IndianRed;
+					add_user_btn.Enabled = false;
+				}
+				else
+				{
+					client_basic_datagrid.ReadOnly = false;
+					edit_mode_button.Text = "Edit mode (On)";
+					edit_mode_button.BackColor = Color.GreenYellow;
+					add_user_btn.Enabled = true;
+				}
+			}
+		}
     }
 }
