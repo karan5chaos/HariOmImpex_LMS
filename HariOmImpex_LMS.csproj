@@ -74,6 +74,12 @@
     <Compile Include="Forms\Main_Form.Designer.cs">
       <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\New_query_for,.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\New_query_for,.Designer.cs">
+      <DependentUpon>New_query_for,.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\New_query_for,.resx">
+      <DependentUpon>New_query_for,.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings_form.resx">
       <DependentUpon>Settings_form.cs</DependentUpon>
