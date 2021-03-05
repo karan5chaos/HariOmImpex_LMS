@@ -62,6 +62,12 @@
     <Compile Include="Forms\Backup_manager_form.Designer.cs">
       <DependentUpon>Backup_manager_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Changelogs_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Changelogs_form.Designer.cs">
+      <DependentUpon>Changelogs_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Login_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Backup_manager_form.resx">
       <DependentUpon>Backup_manager_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Changelogs_form.resx">
+      <DependentUpon>Changelogs_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login_form.resx">
       <DependentUpon>Login_form.cs</DependentUpon>
