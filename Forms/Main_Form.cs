@@ -11,6 +11,8 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using HariOmImpex_LMS.Forms;
 using HariOmImpex_LMS.Properties;
@@ -314,6 +316,9 @@ namespace HariOmImpex_LMS
 			{
 				load_all_data();
 			}
+
+			
+			
 		}
 
 		private void set_access_mode()
@@ -450,6 +455,7 @@ namespace HariOmImpex_LMS
 			get_count();
 		}
 
+		
         private void timer2_Tick(object sender, EventArgs e)
         {
 			if (data_updated)
@@ -559,24 +565,30 @@ namespace HariOmImpex_LMS
 
         private void update_query_DoWork(object sender, DoWorkEventArgs e)
         {
+
 			try
 			{
-				dataAdapter.Update((DataTable)bindingSource1.DataSource);
-				
-				bindingSource1.ResetBindings(false);
+				var source = ((DataTable)bindingSource1.DataSource);
+				update_query.ReportProgress(0, source);
 
+				
 			}
 			catch
 			{
 			}
+
 		}
 
         private void update_query_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-			
-			
-			set_status("Row updated..");
+		
+            //commitChangesToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            //commitChangesToolStripMenuItem.Text = "Commit changes";
+
+            set_status("Row updated..");
 			chnanged = false;
+			
+		
 		}
 
         private void contextMenuStrip2_Opening(object sender, CancelEventArgs e)
@@ -807,11 +819,7 @@ namespace HariOmImpex_LMS
 
         private void client_basic_datagrid_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-			if (!update_query.IsBusy && chnanged)
-			{
-				set_status("Updating row data ..");
-				update_query.RunWorkerAsync();
-			}
+			
 		}
 
 		private void increase_font_big(Control control)
@@ -864,10 +872,40 @@ namespace HariOmImpex_LMS
         {
 			
 		}
+
+        private void client_basic_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void client_basic_datagrid_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+        {
+			
+		}
+
+		
+        private void commitChangesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			Loding_form loading = new Loding_form();
+			loading.CloseAfterDelay(2000);
+			loading.ShowDialog();
+
+			//syncChangesToolStripMenuItem.Visible = true;
+			update_query.RunWorkerAsync();
+
+		}
+
+        private void update_query_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+			
+			dataAdapter.Update((DataTable)e.UserState);
+			Thread.Sleep(500);
+		}
     }
 
     public static class ExtensionMethods
 	{
+
 		public static void DoubleBuffered(this DataGridView dgv, bool setting)
 		{
 			dgv.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(dgv, setting, null);
@@ -881,7 +919,33 @@ namespace HariOmImpex_LMS
 			}
 			return source.IndexOf(toCheck, comp) >= 0;
 		}
-	}
+
+		public static async Task CloseAfterDelay(this Form form, int millisecondsDelay)
+		{
+			await TaskEx.Delay(millisecondsDelay);
+			form.Close();
+		}
 
 	
+	}
+
+
+
+	public class SyncBindingSource : BindingSource
+	{
+		private SynchronizationContext syncContext;
+		public SyncBindingSource()
+		{
+			syncContext = SynchronizationContext.Current;
+		}
+		protected override void OnListChanged(ListChangedEventArgs e)
+		{
+			if (syncContext != null)
+				syncContext.Send(_ => base.OnListChanged(e), null);
+			else
+				base.OnListChanged(e);
+		}
+	}
+
+
 }

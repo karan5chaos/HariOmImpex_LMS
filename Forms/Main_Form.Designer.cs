@@ -74,6 +74,8 @@ namespace HariOmImpex_LMS
             this.menuStrip5 = new System.Windows.Forms.MenuStrip();
             this.decrease_font_btn = new System.Windows.Forms.ToolStripMenuItem();
             this.increase_font_btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.commitChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.syncChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -530,7 +532,9 @@ namespace HariOmImpex_LMS
             this.client_basic_datagrid.Size = new System.Drawing.Size(669, 220);
             this.client_basic_datagrid.TabIndex = 2;
             this.client_basic_datagrid.ReadOnlyChanged += new System.EventHandler(this.client_basic_datagrid_ReadOnlyChanged);
+            this.client_basic_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.client_basic_datagrid_CellContentClick);
             this.client_basic_datagrid.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.client_basic_datagrid_CellMouseClick);
+            this.client_basic_datagrid.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.client_basic_datagrid_CellParsing);
             this.client_basic_datagrid.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.client_basic_datagrid_CellValidated);
             this.client_basic_datagrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.client_basic_datagrid_CellValueChanged);
             this.client_basic_datagrid.ColumnDisplayIndexChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.client_basic_datagrid_ColumnDisplayIndexChanged);
@@ -582,9 +586,12 @@ namespace HariOmImpex_LMS
             // 
             // menuStrip5
             // 
+            this.menuStrip5.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.menuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.decrease_font_btn,
-            this.increase_font_btn});
+            this.increase_font_btn,
+            this.commitChangesToolStripMenuItem,
+            this.syncChangesToolStripMenuItem});
             this.menuStrip5.Location = new System.Drawing.Point(0, 0);
             this.menuStrip5.Name = "menuStrip5";
             this.menuStrip5.Size = new System.Drawing.Size(669, 24);
@@ -616,6 +623,26 @@ namespace HariOmImpex_LMS
             this.increase_font_btn.Text = "toolStripButton2";
             this.increase_font_btn.ToolTipText = "Increase font size";
             this.increase_font_btn.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // commitChangesToolStripMenuItem
+            // 
+            this.commitChangesToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.commitChangesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("commitChangesToolStripMenuItem.Image")));
+            this.commitChangesToolStripMenuItem.Name = "commitChangesToolStripMenuItem";
+            this.commitChangesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.commitChangesToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.commitChangesToolStripMenuItem.Text = "Commit changes";
+            this.commitChangesToolStripMenuItem.Click += new System.EventHandler(this.commitChangesToolStripMenuItem_Click);
+            // 
+            // syncChangesToolStripMenuItem
+            // 
+            this.syncChangesToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.syncChangesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("syncChangesToolStripMenuItem.Image")));
+            this.syncChangesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.syncChangesToolStripMenuItem.Name = "syncChangesToolStripMenuItem";
+            this.syncChangesToolStripMenuItem.Size = new System.Drawing.Size(256, 25);
+            this.syncChangesToolStripMenuItem.Text = "Commiting changes..";
+            this.syncChangesToolStripMenuItem.Visible = false;
             // 
             // groupBox6
             // 
@@ -913,8 +940,10 @@ namespace HariOmImpex_LMS
             // 
             // update_query
             // 
+            this.update_query.WorkerReportsProgress = true;
             this.update_query.WorkerSupportsCancellation = true;
             this.update_query.DoWork += new System.ComponentModel.DoWorkEventHandler(this.update_query_DoWork);
+            this.update_query.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.update_query_ProgressChanged);
             this.update_query.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.update_query_RunWorkerCompleted);
             // 
             // fileSystemWatcher1
@@ -1263,6 +1292,8 @@ namespace HariOmImpex_LMS
         private System.Windows.Forms.MenuStrip menuStrip5;
         private System.Windows.Forms.ToolStripMenuItem decrease_font_btn;
         private System.Windows.Forms.ToolStripMenuItem increase_font_btn;
+        private System.Windows.Forms.ToolStripMenuItem commitChangesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem syncChangesToolStripMenuItem;
     }
 }
 
