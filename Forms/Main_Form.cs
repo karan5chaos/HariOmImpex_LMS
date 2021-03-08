@@ -128,7 +128,7 @@ namespace HariOmImpex_LMS
 
         private void aboutApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			
+			new About_form().ShowDialog();
 		}
 
         private void add_user_btn_Click(object sender, EventArgs e)
