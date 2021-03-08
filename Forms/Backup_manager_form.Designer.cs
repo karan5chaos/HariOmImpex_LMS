@@ -30,8 +30,8 @@ namespace HariOmImpex_LMS.Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Backup_manager_form));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.createNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loading_box = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,13 +44,13 @@ namespace HariOmImpex_LMS.Forms
             this.size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.restore = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.create_backup_worker = new System.ComponentModel.BackgroundWorker();
             this.restore_backup_worker = new System.ComponentModel.BackgroundWorker();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -61,7 +61,7 @@ namespace HariOmImpex_LMS.Forms
             this.loading_box});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(660, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(748, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,6 +71,7 @@ namespace HariOmImpex_LMS.Forms
             this.createNewToolStripMenuItem.Name = "createNewToolStripMenuItem";
             this.createNewToolStripMenuItem.Size = new System.Drawing.Size(138, 20);
             this.createNewToolStripMenuItem.Text = "Generate backup now";
+            this.createNewToolStripMenuItem.Click += new System.EventHandler(this.createNewToolStripMenuItem_Click);
             // 
             // loading_box
             // 
@@ -87,9 +88,9 @@ namespace HariOmImpex_LMS.Forms
             this.statusStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ststxt});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 328);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(660, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(748, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -112,22 +113,23 @@ namespace HariOmImpex_LMS.Forms
             this.size,
             this.restore,
             this.delete});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 8.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 8.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(660, 350);
+            this.dataGridView1.Size = new System.Drawing.Size(748, 404);
             this.dataGridView1.TabIndex = 7;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // backup_name
             // 
@@ -152,11 +154,11 @@ namespace HariOmImpex_LMS.Forms
             // size
             // 
             this.size.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.size.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.size.DefaultCellStyle = dataGridViewCellStyle3;
             this.size.HeaderText = "Size (MB)";
             this.size.Name = "size";
-            this.size.Width = 73;
+            this.size.Width = 68;
             // 
             // restore
             // 
@@ -180,33 +182,43 @@ namespace HariOmImpex_LMS.Forms
             this.delete.UseColumnTextForButtonValue = true;
             this.delete.Width = 45;
             // 
-            // pictureBox1
+            // create_backup_worker
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(660, 350);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
+            this.create_backup_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.create_backup_worker_DoWork);
+            this.create_backup_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.create_backup_worker_RunWorkerCompleted);
+            // 
+            // restore_backup_worker
+            // 
+            this.restore_backup_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.restore_backup_worker_DoWork);
+            this.restore_backup_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.restore_backup_worker_RunWorkerCompleted);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(748, 404);
+            this.panel1.TabIndex = 8;
             // 
             // Backup_manager_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 350);
+            this.ClientSize = new System.Drawing.Size(748, 450);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.Name = "Backup_manager_form";
-            this.Text = "Backup_manager_form";
+            this.Text = "Backup Manager";
+            this.Load += new System.EventHandler(this.Backup_manager_form_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,8 +238,8 @@ namespace HariOmImpex_LMS.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn size;
         private System.Windows.Forms.DataGridViewButtonColumn restore;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.ComponentModel.BackgroundWorker create_backup_worker;
         private System.ComponentModel.BackgroundWorker restore_backup_worker;
+        private System.Windows.Forms.Panel panel1;
     }
 }
