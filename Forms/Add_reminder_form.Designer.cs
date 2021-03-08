@@ -119,6 +119,7 @@ namespace HariOmImpex_LMS.Forms
             this.button1.TabIndex = 12;
             this.button1.Text = "Add Reminder";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // date_text
             // 
@@ -150,7 +151,8 @@ namespace HariOmImpex_LMS.Forms
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.Name = "Add_reminder_form";
-            this.Text = "Add_reminder_form";
+            this.Text = "Add new reminder";
+            this.Load += new System.EventHandler(this.Add_reminder_form_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
