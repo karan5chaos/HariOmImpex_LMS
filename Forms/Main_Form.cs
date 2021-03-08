@@ -221,11 +221,11 @@ namespace HariOmImpex_LMS
         {
 			if (comboBox1.Text == "" || comboBox1.Text == null)
 			{
-				textBox1.Enabled = false;
+				textBox1.ReadOnly = true;
 			}
 			else
 			{
-				textBox1.Enabled = true;
+				textBox1.ReadOnly = false;
 			}
 		}
 
@@ -282,8 +282,13 @@ namespace HariOmImpex_LMS
 			}
 		}
 
+
+		private Reminder_window_form reminder_Window;
         private void Form1_Load(object sender, EventArgs e)
         {
+
+			
+
 			new Login_form().ShowDialog();
 			set_access_mode();
 			if (!File.Exists(global_vars.getDatabasePath()))
@@ -295,6 +300,9 @@ namespace HariOmImpex_LMS
 			{
 				create_backup();
 			}
+			reminder_Window = new Reminder_window_form();
+			reminder_Window.Hide();
+
 			client_basic_datagrid.DoubleBuffered(setting: true);
 			splitContainer2.Panel1Collapsed = true;
 			main_splitcontainer.Panel2Collapsed = true;
@@ -380,11 +388,7 @@ namespace HariOmImpex_LMS
 
         private void textBox1_Click(object sender, EventArgs e)
         {
-			search_text = textBox1.Text;
-			if (Settings.Default.quick_search)
-			{
-				button2_Click(null, null);
-			}
+			
 		}
 
 		private void copy_data_to_clipboard(string text)
@@ -412,7 +416,12 @@ namespace HariOmImpex_LMS
 					connection.ConnectionString = "Data Source=" + global_vars.getDatabasePath();
 					connection.Open();
 					dataAdapter = new SQLiteDataAdapter(query, connection);
-					new SQLiteCommandBuilder(dataAdapter);
+					SQLiteCommandBuilder cb = new SQLiteCommandBuilder(dataAdapter);
+
+					//dataAdapter.DeleteCommand = cb.GetDeleteCommand(true);
+					//dataAdapter.UpdateCommand = cb.GetUpdateCommand(true);
+					//dataAdapter.InsertCommand = cb.GetInsertCommand(true);
+
 					connection.Close();
 					table = new DataTable();
 					dataAdapter.Fill(table);
@@ -504,9 +513,7 @@ namespace HariOmImpex_LMS
 			{
 
 				// need to reimplement!
-				notifyIcon1.BalloonTipTitle = "Pending Reminders";
-				notifyIcon1.BalloonTipText = "There are " + global_vars.reminders + " reminders for today.\nKindly check reminders panel for further details.";
-				notifyIcon1.ShowBalloonTip(3000);
+				reminder_Window.Show();
 			}
 		}
 
@@ -555,6 +562,9 @@ namespace HariOmImpex_LMS
 			try
 			{
 				dataAdapter.Update((DataTable)bindingSource1.DataSource);
+				
+				bindingSource1.ResetBindings(false);
+
 			}
 			catch
 			{
@@ -563,6 +573,8 @@ namespace HariOmImpex_LMS
 
         private void update_query_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+			
+			
 			set_status("Row updated..");
 			chnanged = false;
 		}
@@ -820,6 +832,37 @@ namespace HariOmImpex_LMS
         private void bigToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			global_functions.ui_size_1(control_list);
+		}
+
+        private void reloadDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			load_all_data();
+		}
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+			search_text = textBox1.Text;
+			if (Settings.Default.quick_search)
+			{
+				button2_Click(null, null);
+			}
+		}
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+			if (comboBox1.Text == "" || comboBox1.Text == null)
+			{
+				textBox1.ReadOnly = true;
+			}
+			else
+			{
+				textBox1.ReadOnly = false;
+			}
+		}
+
+        private void client_basic_datagrid_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+			
 		}
     }
 

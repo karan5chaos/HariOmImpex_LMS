@@ -111,6 +111,12 @@
     <Compile Include="Forms\New_query_form.Designer.cs">
       <DependentUpon>New_query_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Reminder_window_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reminder_window_form.Designer.cs">
+      <DependentUpon>Reminder_window_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\New_query_form.resx">
       <DependentUpon>New_query_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reminder_window_form.resx">
+      <DependentUpon>Reminder_window_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings_form.resx">
       <DependentUpon>Settings_form.cs</DependentUpon>

@@ -99,6 +99,7 @@ namespace HariOmImpex_LMS.Forms
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(331, 21);
             this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -142,6 +143,7 @@ namespace HariOmImpex_LMS.Forms
             this.button1.TabIndex = 2;
             this.button1.Text = "Browse..";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -194,6 +196,7 @@ namespace HariOmImpex_LMS.Forms
             // 
             this.openFileDialog1.FileName = "database.db";
             this.openFileDialog1.Title = "Select databse file";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // Settings_form
             // 
@@ -204,6 +207,8 @@ namespace HariOmImpex_LMS.Forms
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.Name = "Settings_form";
             this.Text = "Settings_form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_form_FormClosing);
+            this.Load += new System.EventHandler(this.Settings_form_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

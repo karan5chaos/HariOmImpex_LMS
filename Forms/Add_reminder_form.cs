@@ -11,11 +11,11 @@ using HariOmImpex_LMS.Properties;
 
 namespace HariOmImpex_LMS.Forms
 {
-    public partial class Add_reminder_form : Form
-    {
-        public Add_reminder_form()
-        {
-            InitializeComponent();
+	public partial class Add_reminder_form : Form
+	{
+		public Add_reminder_form()
+		{
+			InitializeComponent();
 
 			List<Control> list = new List<Control>();
 			foreach (Control control in base.Controls)
@@ -28,14 +28,14 @@ namespace HariOmImpex_LMS.Forms
 			}
 		}
 
-        private void Add_reminder_form_Load(object sender, EventArgs e)
-        {
-           
-        }
+		private void Add_reminder_form_Load(object sender, EventArgs e)
+		{
+
+		}
 
 		private void add_reminder()
 		{
-		
+
 			try
 			{
 				SQLiteConnection connection = new SQLiteConnection();
@@ -61,9 +61,10 @@ namespace HariOmImpex_LMS.Forms
 			}
 		}
 
-        private void button1_Click(object sender, EventArgs e)
-        {
+		private void button1_Click(object sender, EventArgs e)
+		{
 			add_reminder();
 			global_vars.updated = true;
 		}
+	}
     }
