@@ -16,6 +16,12 @@ namespace HariOmImpex_LMS
 			set;
 		}
 
+		public static bool hide_rem_window
+		{
+			get;
+			set;
+		}
+
 		public static string getDatabasePath()
 		{
 			return Settings.Default.database_path;

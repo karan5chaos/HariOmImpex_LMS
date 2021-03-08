@@ -42,6 +42,7 @@ namespace HariOmImpex_LMS
         {
             InitializeComponent();
 
+			global_vars.hide_rem_window = false;
 			control_list = new List<Control>();
 			foreach (Control control in base.Controls)
 			{
@@ -517,9 +518,8 @@ namespace HariOmImpex_LMS
         {
 			if (global_vars.reminders > 0)
 			{
-
-				// need to reimplement!
-				reminder_Window.Show();
+				if(!reminder_Window.Visible && !global_vars.hide_rem_window)
+					reminder_Window.Show();
 			}
 		}
 
@@ -901,6 +901,11 @@ namespace HariOmImpex_LMS
 			dataAdapter.Update((DataTable)e.UserState);
 			Thread.Sleep(500);
 		}
+
+        private void Reminders_timer_Tick(object sender, EventArgs e)
+        {
+			
+        }
     }
 
     public static class ExtensionMethods

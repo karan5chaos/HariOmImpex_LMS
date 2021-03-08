@@ -249,6 +249,12 @@
   <ItemGroup>
     <None Include="Resources\information.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mixkit-retro-game-notification-212.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mixkit-tick-tock-clock-timer-1045.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
