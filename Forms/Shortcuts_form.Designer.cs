@@ -83,7 +83,7 @@ namespace HariOmImpex_LMS.Forms
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(446, 385);
+            this.dataGridView1.Size = new System.Drawing.Size(446, 397);
             this.dataGridView1.TabIndex = 1;
             // 
             // function
@@ -109,11 +109,19 @@ namespace HariOmImpex_LMS.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 385);
+            this.ClientSize = new System.Drawing.Size(446, 397);
             this.Controls.Add(this.dataGridView1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Shortcuts_form";
-            this.Text = "Shortcuts_form";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Shortcuts cheat sheet";
+            this.Load += new System.EventHandler(this.Shortcuts_form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

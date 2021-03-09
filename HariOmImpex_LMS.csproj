@@ -255,6 +255,12 @@
   <ItemGroup>
     <None Include="Resources\mixkit-tick-tock-clock-timer-1045.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shortcuts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\control_play_blue.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

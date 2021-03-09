@@ -129,5 +129,17 @@ namespace HariOmImpex_LMS.Properties {
                 this["ui_size"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int selected_notif_sound {
+            get {
+                return ((int)(this["selected_notif_sound"]));
+            }
+            set {
+                this["selected_notif_sound"] = value;
+            }
+        }
     }
 }

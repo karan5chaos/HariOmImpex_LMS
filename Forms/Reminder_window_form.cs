@@ -42,17 +42,31 @@ namespace HariOmImpex_LMS.Forms
 
         private void Reminder_window_form_VisibleChanged(object sender, EventArgs e)
         {
-            SoundPlayer audio = new SoundPlayer(Properties.Resources.notif_sound_2);
+            SoundPlayer audio = new SoundPlayer();
+
+                switch (Properties.Settings.Default.selected_notif_sound)
+                {
+                    case 0:
+                        {
+                            audio.Stream = Properties.Resources.notif_sound;
+                        }
+                        break;
+
+                    case 1:
+                        {
+                            audio.Stream = Properties.Resources.notif_sound_2;
+                        }
+                        break;
+                }
+
             if (this.Visible)
             {
-               
                 audio.Play();
             }
-            else {
-
+            else
+            {
                 audio.Stop();
             }
-            
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

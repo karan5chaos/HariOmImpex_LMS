@@ -15,5 +15,64 @@ namespace HariOmImpex_LMS.Forms
         {
             InitializeComponent();
         }
+
+        private void Shortcuts_form_Load(object sender, EventArgs e)
+        {
+			dataGridView1.DoubleBuffered(setting: true);
+			foreach (KeyValuePair<string, string> item in new Dictionary<string, string>
+			{
+				{
+					"Query Builder",
+					"Ctrl + Q"
+				},
+				{
+					"Backup Manager",
+					"Ctrl + B"
+				},
+				{
+					"Shortcuts cheat sheet",
+					"Home"
+				},
+				{
+					"Reload Database",
+					"Ctrl + R"
+				},
+				{
+					"Toggle Edit Mode",
+					"Ctrl + E"
+				},
+				{
+					"Toggle Search",
+					"Ctrl + F"
+				},
+				{
+					"Export current view",
+					"Ctrl + P"
+				},
+				{
+					"Delete selected entry",
+					"Delete"
+				},
+				{
+					"Copy selected value",
+					"Ctrl + Shift + C or Ctrl + Mouse left-click"
+				},
+				{
+					"Show reminder panel",
+					"Ctrl + Space"
+				},
+				{
+					"Add new reminder",
+					"Ctrl + M"
+				},
+				{
+					"Add new client",
+					"Ctrl + N"
+				}
+			})
+			{
+				dataGridView1.Rows.Add(item.Key, item.Value);
+			}
+		}
     }
 }
