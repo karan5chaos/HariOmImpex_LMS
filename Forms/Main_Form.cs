@@ -6,6 +6,7 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Net;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -15,7 +16,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HariOmImpex_LMS.Forms;
+using HariOmImpex_LMS.Globals_Variables;
 using HariOmImpex_LMS.Properties;
+using Transitions;
 
 namespace HariOmImpex_LMS
 {
@@ -36,13 +39,14 @@ namespace HariOmImpex_LMS
         private DataSet query_builder_dataset;
         private string filename;
 		private Shortcuts_form shortcuts_List;
-
+		SoundPlayer audio = new SoundPlayer();
+		bool played = false;
 
 		public Form1()
         {
             InitializeComponent();
 
-			global_vars.hide_rem_window = false;
+			//global_vars.hide_rem_window = false;
 			control_list = new List<Control>();
 			foreach (Control control in base.Controls)
 			{
@@ -60,6 +64,21 @@ namespace HariOmImpex_LMS
 			{
 				global_functions.ui_size_1(control_list);
 			}
+
+			switch (Properties.Settings.Default.selected_notif_sound)
+			{
+				case 0:
+					{
+						audio.Stream = Properties.Resources.notif_sound;
+					}
+					break;
+
+				case 1:
+					{
+						audio.Stream = Properties.Resources.notif_sound_2;
+					}
+					break;
+			}
 		}
 
 
@@ -76,8 +95,16 @@ namespace HariOmImpex_LMS
 				for (int i = 0; i < reader.FieldCount; i++)
 				{
 					comboBox1.Items.Add(reader.GetName(i));
+
+					if (!autocompleteMenu1.Items.Contains(reader.GetName(i)))
+					{
+						autocompleteMenu1.AddItem(reader.GetName(i));
+					}
+					
 				}
 				connection.Close();
+
+
 			}
 			catch
 			{
@@ -101,13 +128,6 @@ namespace HariOmImpex_LMS
 				splitContainer3.Panel2Collapsed = false;
 				edit_mode_button.Enabled = false;
 				reloadDatabaseToolStripMenuItem.Enabled = false;
-				foreach (string item in comboBox1.Items)
-				{
-					//if (!autocompleteMenu1.get_Items().Contains(item))
-					//{
-					//	autocompleteMenu1.AddItem(item);
-					//}
-				}
 			}
 		}
 
@@ -286,7 +306,8 @@ namespace HariOmImpex_LMS
 		}
 
 
-		private Reminder_window_form reminder_Window;
+		
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -303,23 +324,30 @@ namespace HariOmImpex_LMS
 			{
 				create_backup();
 			}
-			reminder_Window = new Reminder_window_form();
-			reminder_Window.Hide();
 
 			client_basic_datagrid.DoubleBuffered(setting: true);
 			splitContainer2.Panel1Collapsed = true;
 			main_splitcontainer.Panel2Collapsed = true;
-			timer1.Start();
-			timer2.Start();
+			splitContainer5.Panel1Collapsed = true;
+
+			global_vars.ispanelcollapsed = main_splitcontainer.Panel2Collapsed;
+
+			
 			todaysdate = DateTime.Now.ToLongDateString();
-			check_reminders.Start();
+			get_column_names();
+			load_reminders();
+			load_queries();
 			if (Settings.Default.load_data_startup && check_connected())
 			{
 				load_all_data();
 			}
 
-			
-			
+			timer1.Start();
+			timer2.Start();
+			check_reminders.Start();
+
+
+
 		}
 
 		private void set_access_mode()
@@ -431,6 +459,7 @@ namespace HariOmImpex_LMS
 					connection.Close();
 					table = new DataTable();
 					dataAdapter.Fill(table);
+					
 				}
 				catch (Exception ex)
 				{
@@ -449,7 +478,7 @@ namespace HariOmImpex_LMS
 			bindingSource1.DataSource = table;
 			client_basic_datagrid.DataSource = bindingSource1;
 			client_basic_datagrid.Columns[0].Visible = false;
-			client_basic_datagrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+			//client_basic_datagrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 			OrderColumns();
 			refreshing = false;
 			loading_box.Visible = false;
@@ -489,14 +518,17 @@ namespace HariOmImpex_LMS
 			today_rem_datagrid.DataSource = today_reminder.Tables[0].DefaultView;
 			upcoming_rem_datagrid.DataSource = upcoming_reminder.Tables[0].DefaultView;
 			global_vars.reminders = today_rem_datagrid.Rows.Count;
+
 			if (global_vars.reminders > 0)
 			{
 				active_remiders.Text = global_vars.reminders + " Reminder(s) active!";
+				reminder_pane_visiblechanged();
 			}
 			else
 			{
 				active_remiders.Text = "Reminders";
 			}
+
 			today_reminder.Dispose();
 			upcoming_reminder.Dispose();
 		}
@@ -508,18 +540,39 @@ namespace HariOmImpex_LMS
 
         private void check_connectivity_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-			if (Settings.Default.load_data_startup)
-			{
-				load_reminders();
-			}
+			//if (Settings.Default.load_data_startup)
+			//{
+			//	load_reminders();
+			//}
 		}
 
+
+		
+
+
+		void reminder_pane_visiblechanged()
+		{
+			if (splitContainer5.Panel1Collapsed)
+			{
+				splitContainer5.Panel1Collapsed = false;
+				if (!global_vars.mute_audio && played == false)
+				{
+					audio.Play();
+					played = true;
+					Transition.run(panel6, "BackColor", Color.Khaki, new TransitionType_Flash(999999,99999));
+				}
+			}
+			else
+			{
+				played = false;
+			}
+		
+		}
         private void check_reminders_Tick(object sender, EventArgs e)
         {
 			if (global_vars.reminders > 0)
 			{
-				if(!reminder_Window.Visible && !global_vars.hide_rem_window)
-					reminder_Window.Show();
+				reminder_pane_visiblechanged();
 			}
 		}
 
@@ -581,11 +634,15 @@ namespace HariOmImpex_LMS
 
         private void update_query_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-		
-            //commitChangesToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            //commitChangesToolStripMenuItem.Text = "Commit changes";
 
-            set_status("Row updated..");
+			Loding_form loading = new Loding_form();
+			loading.CloseAfterDelay(2000);
+			loading.ShowDialog();
+
+			//commitChangesToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
+			//commitChangesToolStripMenuItem.Text = "Commit changes";
+
+			set_status("Row updated..");
 			chnanged = false;
 			
 		
@@ -618,12 +675,15 @@ namespace HariOmImpex_LMS
 			if (main_splitcontainer.Panel2Collapsed)
 			{
 				main_splitcontainer.Panel2Collapsed = false;
+				
 				load_reminders();
 			}
 			else
 			{
 				main_splitcontainer.Panel2Collapsed = true;
+				
 			}
+			global_vars.ispanelcollapsed = main_splitcontainer.Panel2Collapsed;
 		}
 
         private void executeCommandToolStripMenuItem_Click(object sender, EventArgs e)
@@ -886,9 +946,7 @@ namespace HariOmImpex_LMS
 		
         private void commitChangesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			Loding_form loading = new Loding_form();
-			loading.CloseAfterDelay(2000);
-			loading.ShowDialog();
+			
 
 			//syncChangesToolStripMenuItem.Visible = true;
 			update_query.RunWorkerAsync();
@@ -906,6 +964,62 @@ namespace HariOmImpex_LMS
         {
 			
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+			splitContainer5.Panel1Collapsed = true;
+			audio.Stop();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+			if (global_vars.mute_audio)
+			{
+				button3.Text = "Mute";
+				global_vars.mute_audio = false;
+			}
+			else
+			{
+				button3.Text = "Unmute";
+				global_vars.mute_audio = true;
+				audio.Stop();
+			}
+			
+		}
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+			main_splitcontainer.Panel2Collapsed = false;
+			splitContainer5.Panel1Collapsed = true;
+			audio.Stop();
+        }
+
+        private void savedQueriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+		void load_queries()
+		{
+			listBox1.Items.Clear();
+			string querypath = Path.GetDirectoryName(global_vars.getDatabasePath()) + "/queries";
+			foreach (string queries in Directory.GetFiles(querypath))
+			{	
+				listBox1.Items.Add(Path.GetFileNameWithoutExtension(queries));
+
+			}
+
+		}
+
+        private void check_queries_Tick(object sender, EventArgs e)
+        {
+			if (global_vars.queryadded)
+			{
+				load_queries();
+				global_vars.queryadded = false;
+			}
+			
+		}
     }
 
     public static class ExtensionMethods
@@ -932,6 +1046,7 @@ namespace HariOmImpex_LMS
 		}
 
 	
+
 	}
 
 
@@ -950,6 +1065,8 @@ namespace HariOmImpex_LMS
 			else
 				base.OnListChanged(e);
 		}
+
+
 	}
 
 

@@ -103,8 +103,12 @@ namespace HariOmImpex_LMS.Forms
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "New_query_form";
-            this.Text = "New_query_for_";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "New query";
             this.ResumeLayout(false);
             this.PerformLayout();
 

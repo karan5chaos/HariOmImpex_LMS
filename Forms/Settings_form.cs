@@ -36,7 +36,6 @@ namespace HariOmImpex_LMS.Forms
             load_notif_sounds();
 
             notif_combox.SelectedIndex = Properties.Settings.Default.selected_notif_sound;
-            
         }
 
         private void button1_Click(object sender, EventArgs e)

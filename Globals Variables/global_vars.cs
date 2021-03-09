@@ -22,6 +22,24 @@ namespace HariOmImpex_LMS
 			set;
 		}
 
+		public static bool ispanelcollapsed
+		{
+			get;
+			set;
+		}
+
+		public static bool mute_audio
+		{
+			get;
+			set;
+		}
+
+		public static bool queryadded
+		{
+			get;
+			set;
+		}
+
 		public static string getDatabasePath()
 		{
 			return Settings.Default.database_path;

@@ -26,7 +26,14 @@ namespace HariOmImpex_LMS.Forms
             SplitContainer sc = new SplitContainer();
             sc = (SplitContainer)form1.Controls["main_splitcontainer"];
 
-            sc.Panel2Collapsed = false;
+            if (sc.Panel2Collapsed)
+            {
+                sc.Panel2Collapsed = false;
+            }
+            else
+            {
+                sc.Panel2Collapsed = true;
+            }
         }
 
         private void Reminder_window_form_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,10 +69,12 @@ namespace HariOmImpex_LMS.Forms
             if (this.Visible)
             {
                 audio.Play();
+                
             }
             else
             {
                 audio.Stop();
+                
             }
         }
 

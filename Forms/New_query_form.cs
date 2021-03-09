@@ -42,6 +42,7 @@ namespace HariOmImpex_LMS.Forms
 					Directory.CreateDirectory(text);
 					File.AppendAllText(text + "/" + textBox1.Text, textBox2.Text);
 				}
+				global_vars.queryadded = true;
 				Close();
 			}
 			catch
