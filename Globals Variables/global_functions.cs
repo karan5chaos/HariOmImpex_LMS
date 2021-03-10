@@ -5,6 +5,8 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.Windows.Forms;
 using HariOmImpex_LMS.Properties;
+using HariOmImpex_LMS.Forms;
+using System;
 
 namespace HariOmImpex_LMS
 {
@@ -84,5 +86,22 @@ namespace HariOmImpex_LMS
 			Settings.Default.Save();
 			Settings.Default.Reload();
 		}
+
+
+		public static Log_console_form log_Console = new Log_console_form();
+		public static void Entry_log(int type, string message, string stack_trace)
+		{
+			
+
+			//if (log_Console.Visible == false)
+			//{
+			//	//log_Console.Show();
+			//	log_Console.Hide();
+			
+			//}
+			log_Console.dataGridView1.Rows.Add(DateTime.Now.ToLongTimeString(), type.ToString(), message, stack_trace);
+		}
+
+
 	}
 }

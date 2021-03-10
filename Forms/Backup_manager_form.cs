@@ -59,8 +59,17 @@ namespace HariOmImpex_LMS.Forms
 
         private void create_backup_worker_DoWork(object sender, DoWorkEventArgs e)
         {
-			filename = Settings.Default.backup_path + "/backup_" + DateTime.Now.ToLongDateString() + "_" + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond + ".db";
-			File.Copy(global_vars.getDatabasePath(), filename);
+			try
+			{
+				filename = Settings.Default.backup_path + "/backup_" + DateTime.Now.ToLongDateString() + "_" + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond + ".db";
+				File.Copy(global_vars.getDatabasePath(), filename);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Erorr occured..\n\n" + ex.Message);
+				global_functions.Entry_log(1, "create_backup_worker - " + ex.Message, ex.StackTrace);
+
+			}
 		}
 
         private void create_backup_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -69,6 +78,8 @@ namespace HariOmImpex_LMS.Forms
 			FileInfo fileInfo = new FileInfo(filename);
 			dataGridView1.Rows.Add(fileInfo.Name, fileInfo.FullName, fileInfo.CreationTime, ConvertBytesToMegabytes(fileInfo.Length));
 			ststxt.Text = "Backup " + fileInfo.Name + " created.";
+
+			global_functions.Entry_log(0, "create_backup_worker - success", "");
 		}
 
 		private static double ConvertBytesToMegabytes(long bytes)
@@ -92,6 +103,7 @@ namespace HariOmImpex_LMS.Forms
 			{
 				MessageBox.Show("Erorr occured..\n\n" + ex.Message);
 				ststxt.Text = "Error occured.. please restart backup manager.";
+				global_functions.Entry_log(1, "restore_backup_worker - " + ex.Message, ex.StackTrace);
 			}
 		}
 
@@ -99,6 +111,7 @@ namespace HariOmImpex_LMS.Forms
         {
 			loading_box.Visible = false;
 			ststxt.Text = "Database restored..";
+			global_functions.Entry_log(0, "restore_backup_worker - success", "");
 		}
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -129,6 +142,7 @@ namespace HariOmImpex_LMS.Forms
 			{
 				MessageBox.Show("Erorr occured..\n\n" + ex.Message);
 				ststxt.Text = "Error occured.. please restart backup manager.";
+				global_functions.Entry_log(1, "restore_backup_worker - " + ex.Message, ex.StackTrace);
 			}
 		}
 

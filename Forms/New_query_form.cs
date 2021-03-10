@@ -43,10 +43,12 @@ namespace HariOmImpex_LMS.Forms
 					File.AppendAllText(text + "/" + textBox1.Text, textBox2.Text);
 				}
 				global_vars.queryadded = true;
+				global_functions.Entry_log(0, "query_add - success", "");
 				Close();
 			}
-			catch
+			catch(Exception ex)
 			{
+				global_functions.Entry_log(1, "query_add - " + ex.Message, ex.StackTrace);
 			}
 		}
 
@@ -54,6 +56,7 @@ namespace HariOmImpex_LMS.Forms
         {
 			textBox1.Clear();
 			textBox2.Clear();
+
 		}
 
 

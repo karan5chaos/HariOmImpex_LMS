@@ -54,10 +54,12 @@ namespace HariOmImpex_LMS.Forms
 				command.ExecuteNonQuery();
 				connection.Close();
 				sts_text.Text = "Reminder successfully added.";
+				global_functions.Entry_log(0, "add_new_reminder - success", "");
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show("An error occurred..\n\n" + ex.Message);
+				global_functions.Entry_log(1, "add_new_reminder - " + ex.Message, ex.StackTrace);
 			}
 		}
 
@@ -65,6 +67,7 @@ namespace HariOmImpex_LMS.Forms
 		{
 			add_reminder();
 			global_vars.reminder_added = true;
+			
 			Close();
 		}
 	}

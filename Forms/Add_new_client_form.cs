@@ -52,6 +52,7 @@ namespace HariOmImpex_LMS.Forms
 						if (command.ExecuteNonQuery() > 0)
 						{
 							toolStripStatusLabel1.Text = "New client data recorded..";
+							global_functions.Entry_log(0, "add_new_client - success", "");
 						}
 						else
 						{
@@ -66,6 +67,7 @@ namespace HariOmImpex_LMS.Forms
 				catch (Exception ex)
 				{
 					MessageBox.Show("ERROR:" + ex.Message);
+					global_functions.Entry_log(1, "add_new_client - " + ex.Message, ex.StackTrace);
 				}
 				finally
 				{
@@ -115,6 +117,8 @@ namespace HariOmImpex_LMS.Forms
 					control10.Text = "";
 				}
 			}
+
+			global_functions.Entry_log(0, "clear_all_fields - success", "");
 		}
 
 		private bool check_empty()

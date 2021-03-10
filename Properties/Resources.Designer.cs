@@ -93,6 +93,16 @@ namespace HariOmImpex_LMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bug_go {
+            get {
+                object obj = ResourceManager.GetObject("bug_go", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap client_account_template {
             get {
                 object obj = ResourceManager.GetObject("client_account_template", resourceCulture);

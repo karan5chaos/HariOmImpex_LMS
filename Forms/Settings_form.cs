@@ -36,6 +36,8 @@ namespace HariOmImpex_LMS.Forms
             load_notif_sounds();
 
             notif_combox.SelectedIndex = Properties.Settings.Default.selected_notif_sound;
+
+            global_functions.Entry_log(0, "setting_loaded - success", "");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -82,6 +84,8 @@ namespace HariOmImpex_LMS.Forms
             Settings.Default.Save();
             Settings.Default.Reload();
             global_vars.updated = true;
+
+            global_functions.Entry_log(0, "settings_updated - success", "");
         }
 
         private void Settings_form_FormClosing(object sender, FormClosingEventArgs e)

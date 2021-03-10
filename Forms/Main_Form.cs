@@ -63,6 +63,7 @@ namespace HariOmImpex_LMS
 			if (Settings.Default.ui_size == 1)
 			{
 				global_functions.ui_size_1(control_list);
+				global_functions.Entry_log(0, "UI_size set to 1","");
 			}
 
 			switch (Properties.Settings.Default.selected_notif_sound)
@@ -79,6 +80,9 @@ namespace HariOmImpex_LMS
 					}
 					break;
 			}
+			global_functions.Entry_log(0, "audio stream configured.","");
+
+
 		}
 
 
@@ -103,11 +107,12 @@ namespace HariOmImpex_LMS
 					
 				}
 				connection.Close();
-
+				global_functions.Entry_log(0, "get_column_names - success","");
 
 			}
-			catch
+			catch(Exception exception)
 			{
+				global_functions.Entry_log(1, "get_column_names - " + exception.Message, exception.StackTrace);
 			}
 		}
 
@@ -118,6 +123,8 @@ namespace HariOmImpex_LMS
 				splitContainer3.Panel2Collapsed = true;
 				edit_mode_button.Enabled = true;
 				reloadDatabaseToolStripMenuItem.Enabled = true;
+
+				global_functions.Entry_log(0, "query_builder panel collapsed = true", "");
 			}
 			else
 			{
@@ -128,6 +135,7 @@ namespace HariOmImpex_LMS
 				splitContainer3.Panel2Collapsed = false;
 				edit_mode_button.Enabled = false;
 				reloadDatabaseToolStripMenuItem.Enabled = false;
+				global_functions.Entry_log(0, "query_builder panel collapsed = false", "");
 			}
 		}
 
@@ -137,21 +145,25 @@ namespace HariOmImpex_LMS
 			{
 				splitContainer2.Panel1Collapsed = false;
 				comboBox1.Focus();
+				global_functions.Entry_log(0, "search_panel collapsed = false", "");
 			}
 			else
 			{
 				splitContainer2.Panel1Collapsed = true;
+				global_functions.Entry_log(0, "search_panel collapsed = true", "");
 			}
 		}
 
         private void backupManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			new Backup_manager_form().ShowDialog();
+			global_functions.Entry_log(0, "Backup_manager opened", "");
 		}
 
         private void aboutApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			new About_form().ShowDialog();
+			global_functions.Entry_log(0, "about_form opened", "");
 		}
 
         private void add_user_btn_Click(object sender, EventArgs e)
@@ -159,6 +171,7 @@ namespace HariOmImpex_LMS
 			if (client_basic_datagrid.Rows.Count > 0)
 			{
 				new Add_new_client_form().ShowDialog();
+				global_functions.Entry_log(0, "add_new_client form opened", "");
 			}
 		}
 
@@ -173,6 +186,7 @@ namespace HariOmImpex_LMS
 					edit_mode_button.Text = "Edit mode (Off)";
 					edit_mode_button.BackColor = Color.IndianRed;
 					add_user_btn.Enabled = false;
+					global_functions.Entry_log(0, "edit_mode = false", "");
 				}
 				else
 				{
@@ -180,19 +194,24 @@ namespace HariOmImpex_LMS
 					edit_mode_button.Text = "Edit mode (On)";
 					edit_mode_button.BackColor = Color.GreenYellow;
 					add_user_btn.Enabled = true;
+					global_functions.Entry_log(0, "edit_mode = true", "");
 				}
 			}
 		}
 
 		private void load_all_data()
 		{
+			global_functions.Entry_log(0, "load_all_data - start", "");
+
 			get_column_names();
 			query = "select * from client_data;";
 			load_database();
+
 		}
 
 		private void load_reminders()
 		{
+			global_functions.Entry_log(0, "load_reminders - start", "");
 			today_rem_datagrid.DataSource = null;
 			upcoming_rem_datagrid.DataSource = null;
 			if (!get_reminders.IsBusy && check_connected())
@@ -282,21 +301,30 @@ namespace HariOmImpex_LMS
 
 		private void load_database()
 		{
-			if (!get_data.IsBusy)
+			try
 			{
-				loading_box.Visible = true;
-				if (File.Exists(global_vars.getDatabasePath()))
+				if (!get_data.IsBusy)
 				{
-					fileSystemWatcher1.Path = Path.GetDirectoryName(global_vars.getDatabasePath());
-					fileSystemWatcher1.NotifyFilter = NotifyFilters.LastWrite;
-					fileSystemWatcher1.EnableRaisingEvents = true;
-					get_data.RunWorkerAsync();
+					loading_box.Visible = true;
+					if (File.Exists(global_vars.getDatabasePath()))
+					{
+						fileSystemWatcher1.Path = Path.GetDirectoryName(global_vars.getDatabasePath());
+						fileSystemWatcher1.NotifyFilter = NotifyFilters.LastWrite;
+						fileSystemWatcher1.EnableRaisingEvents = true;
+						get_data.RunWorkerAsync();
+					}
 				}
+			}
+			catch(Exception exception)
+			{
+				global_functions.Entry_log(1, "load_databse - "+exception.Message, exception.StackTrace);
+
 			}
 		}
 
 		private void create_backup()
 		{
+			global_functions.Entry_log(0, "create_backup - started", "");
 			loading_box.Visible = true;
 			sts_txt.Text = "Creating backup.. Please wait..";
 			if (!create_backup_worker.IsBusy)
@@ -311,8 +339,8 @@ namespace HariOmImpex_LMS
         private void Form1_Load(object sender, EventArgs e)
         {
 
-			
 
+			
 			new Login_form().ShowDialog();
 			set_access_mode();
 			if (!File.Exists(global_vars.getDatabasePath()))
@@ -383,6 +411,7 @@ namespace HariOmImpex_LMS
 					break;
 			}
 			accessModeToolStripMenuItem.Text = text;
+			global_functions.Entry_log(0, "set_access_mode - success", "");
 		}
 
 		public void get_count()
@@ -407,8 +436,17 @@ namespace HariOmImpex_LMS
 		{
 			if (MessageBox.Show("Delete selected reminder?\nThis cannot be undone.", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
 			{
-				global_functions.execute_command("delete from reminder_data where ID = " + grid.SelectedRows[0].Cells[0].Value?.ToString() + ";");
-				load_reminders();
+				try
+				{
+					global_functions.execute_command("delete from reminder_data where ID = " + grid.SelectedRows[0].Cells[0].Value?.ToString() + ";");
+					load_reminders();
+					global_functions.Entry_log(0, "delete_reminder (global_functions.execute_command) - success", "");
+				}
+				catch (Exception exception)
+				{
+					global_functions.Entry_log(1, "delete_reminder (global_functions.execute_command) - " + exception.Message, exception.StackTrace);
+
+				}
 			}
 		}
 
@@ -416,8 +454,17 @@ namespace HariOmImpex_LMS
         {
 			if (!client_basic_datagrid.ReadOnly && MessageBox.Show("Delete selected entry?\nThis cannot be undone.", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
 			{
-				global_functions.execute_command("delete from client_data where ID = " + client_basic_datagrid.SelectedRows[0].Cells[0].Value?.ToString() + ";");
-				client_basic_datagrid.Rows.RemoveAt(client_basic_datagrid.SelectedRows[0].Index);
+				try
+				{
+					global_functions.execute_command("delete from client_data where ID = " + client_basic_datagrid.SelectedRows[0].Cells[0].Value?.ToString() + ";");
+					client_basic_datagrid.Rows.RemoveAt(client_basic_datagrid.SelectedRows[0].Index);
+					global_functions.Entry_log(0, "delete_client_entry (global_functions.execute_command) - success", "");
+				}
+				catch(Exception exception)
+				{
+					global_functions.Entry_log(1, "delete_client_entry (global_functions.execute_command) - "+ exception.Message, exception.StackTrace);
+
+				}
 			}
 		}
 
@@ -430,46 +477,43 @@ namespace HariOmImpex_LMS
 		{
 			Clipboard.SetText(text);
 			sts_txt.Text = text + " copied to clipboard.";
+
+			global_functions.Entry_log(0, "clipboard_settext - success", "");
 		}
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			new Settings_form().ShowDialog();
+			global_functions.Entry_log(0, "settings_form opened - success", "");
 		}
 
-        private void get_data_DoWork(object sender, DoWorkEventArgs e)
-        {
+		private void get_data_DoWork(object sender, DoWorkEventArgs e)
+		{
 			if (query == null || !(query != ""))
 			{
 				return;
 			}
 			try
 			{
-				try
-				{
-					var connection = new SQLiteConnection();
-					connection.ConnectionString = "Data Source=" + global_vars.getDatabasePath();
-					connection.Open();
-					dataAdapter = new SQLiteDataAdapter(query, connection);
-					SQLiteCommandBuilder cb = new SQLiteCommandBuilder(dataAdapter);
+				var connection = new SQLiteConnection();
+				connection.ConnectionString = "Data Source=" + global_vars.getDatabasePath();
+				connection.Open();
+				dataAdapter = new SQLiteDataAdapter(query, connection);
+				SQLiteCommandBuilder cb = new SQLiteCommandBuilder(dataAdapter);
 
-					//dataAdapter.DeleteCommand = cb.GetDeleteCommand(true);
-					//dataAdapter.UpdateCommand = cb.GetUpdateCommand(true);
-					//dataAdapter.InsertCommand = cb.GetInsertCommand(true);
+				//dataAdapter.DeleteCommand = cb.GetDeleteCommand(true);
+				//dataAdapter.UpdateCommand = cb.GetUpdateCommand(true);
+				//dataAdapter.InsertCommand = cb.GetInsertCommand(true);
 
-					connection.Close();
-					table = new DataTable();
-					dataAdapter.Fill(table);
-					
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.Message + "\n\n" + ex.StackTrace);
-				}
+				connection.Close();
+				table = new DataTable();
+				dataAdapter.Fill(table);
+
 			}
-			catch
+			catch (Exception ex)
 			{
-				MessageBox.Show("Error occured while connecting to database.\nPlease check if the path is correct.");
+				table.Dispose();
+				global_functions.Entry_log(1, "get_data_dowork - " + ex.Message, ex.StackTrace);
 			}
 		}
 
@@ -478,12 +522,14 @@ namespace HariOmImpex_LMS
 			refreshing = true;
 			bindingSource1.DataSource = table;
 			client_basic_datagrid.DataSource = bindingSource1;
-			client_basic_datagrid.Columns[0].Visible = false;
+			//client_basic_datagrid.Columns[0].Visible = false;
 			//client_basic_datagrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 			OrderColumns();
 			refreshing = false;
 			loading_box.Visible = false;
 			get_count();
+
+			global_functions.Entry_log(0, "get_data_dowork - success", "");
 		}
 
 		
@@ -505,11 +551,11 @@ namespace HariOmImpex_LMS
 				upcoming_reminder = new DataSet();
 				upcoming_reminder = global_functions.load_SQLiteData("select * from reminder_data;");
 			}
-			catch
+			catch(Exception ex)
 			{
 				get_reminders.CancelAsync();
 				get_reminders.Dispose();
-				MessageBox.Show("Error occured while connecting to database.\nPlease check if the path is correct.");
+				global_functions.Entry_log(1, "get_reminders_dowork - " + ex.Message, ex.StackTrace);
 			}
 		}
 
@@ -532,6 +578,8 @@ namespace HariOmImpex_LMS
 
 			today_reminder.Dispose();
 			upcoming_reminder.Dispose();
+
+			global_functions.Entry_log(0, "get_reminders_dowork - success","");
 		}
 
         private void check_connectivity_DoWork(object sender, DoWorkEventArgs e)
@@ -553,6 +601,7 @@ namespace HariOmImpex_LMS
 
 		void reminder_pane_visiblechanged()
 		{
+
 			if (splitContainer5.Panel1Collapsed)
 			{
 				splitContainer5.Panel1Collapsed = false;
@@ -567,7 +616,9 @@ namespace HariOmImpex_LMS
 			{
 				played = false;
 			}
-		
+
+			global_functions.Entry_log(0, "reminder_pane_visiblechanged - success","");
+
 		}
         private void check_reminders_Tick(object sender, EventArgs e)
         {
@@ -580,6 +631,7 @@ namespace HariOmImpex_LMS
         private void addNewToolStripMenuItem2_Click(object sender, EventArgs e)
         {
 			new Add_reminder_form().ShowDialog();
+			global_functions.Entry_log(0, "add_reminder_form opened", "");
 		}
 
         private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
@@ -624,11 +676,11 @@ namespace HariOmImpex_LMS
 			{
 				var source = ((DataTable)bindingSource1.DataSource);
 				update_query.ReportProgress(0, source);
-
-				
 			}
-			catch
+			catch(Exception ex)
 			{
+				update_query.CancelAsync();
+				global_functions.Entry_log(1, "update_query - " + ex.Message, ex.StackTrace);
 			}
 
 		}
@@ -645,8 +697,10 @@ namespace HariOmImpex_LMS
 
 			set_status("Row updated..");
 			chnanged = false;
-			
-		
+
+			global_functions.Entry_log(0, "update_query - success", "");
+
+
 		}
 
         private void contextMenuStrip2_Opening(object sender, CancelEventArgs e)
@@ -678,11 +732,14 @@ namespace HariOmImpex_LMS
 				main_splitcontainer.Panel2Collapsed = false;
 				
 				load_reminders();
+
+				global_functions.Entry_log(0, "Reminders panel collapsed = false", "");
 			}
 			else
 			{
 				main_splitcontainer.Panel2Collapsed = true;
-				
+				global_functions.Entry_log(0, "Reminders panel collapsed = true", "");
+
 			}
 			global_vars.ispanelcollapsed = main_splitcontainer.Panel2Collapsed;
 		}
@@ -691,6 +748,7 @@ namespace HariOmImpex_LMS
         {
 			if (File.Exists(global_vars.getDatabasePath()))
 			{
+				global_functions.Entry_log(0, "query_builder (execute_query) - started", "");
 				query_builder_text = textBox2.Text;
 				if (!query_builder_text.Contains("delete", StringComparison.OrdinalIgnoreCase))
 				{
@@ -700,7 +758,7 @@ namespace HariOmImpex_LMS
 			}
 			else
 			{
-				sts_txt.Text = "Query cannot be executed.";
+				sts_txt.Text = "Query cannot be executed. Database not found..";
 			}
 		}
 
@@ -720,8 +778,17 @@ namespace HariOmImpex_LMS
 
         private void query_builder_worker_DoWork(object sender, DoWorkEventArgs e)
         {
-			query_builder_dataset = new DataSet();
-			query_builder_dataset = global_functions.load_SQLiteData(query_builder_text);
+			try
+			{
+				query_builder_dataset = new DataSet();
+				query_builder_dataset = global_functions.load_SQLiteData(query_builder_text);
+
+				
+			}
+			catch(Exception ex)
+			{
+				global_functions.Entry_log(1, "query_builder_worker - " +  ex.Message, ex.StackTrace);
+			}
 		}
 
         private void query_builder_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -731,6 +798,7 @@ namespace HariOmImpex_LMS
 				client_basic_datagrid.DataSource = query_builder_dataset.Tables[0].DefaultView;
 			}
 			query_ststxt.Text = "Query successfully executed..";
+			global_functions.Entry_log(0, "query_builder_worker - success", "");
 		}
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
@@ -749,6 +817,7 @@ namespace HariOmImpex_LMS
 				New_query_form save_Query = new New_query_form();
 				save_Query.textBox2.Text = textBox2.Text;
 				save_Query.ShowDialog();
+				global_functions.Entry_log(0, "save_query_form opened", "");
 			}
 		}
 
@@ -771,12 +840,21 @@ namespace HariOmImpex_LMS
 				stringBuilder.AppendLine(string.Join(",", source2.Select((DataGridViewCell cell) => "\"" + cell.Value?.ToString() + "\"").ToArray()));
 			}
 			File.AppendAllText(saveFileDialog1.FileName, stringBuilder.ToString());
+			global_functions.Entry_log(0, "export_current_view - success", "");
 		}
 
         private void create_backup_worker_DoWork(object sender, DoWorkEventArgs e)
         {
-			filename = Settings.Default.backup_path + "/backup_" + DateTime.Now.ToLongDateString() + "_" + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond + ".db";
-			File.Copy(global_vars.getDatabasePath(), filename);
+			try
+			{
+				filename = Settings.Default.backup_path + "/backup_" + DateTime.Now.ToLongDateString() + "_" + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond + ".db";
+				File.Copy(global_vars.getDatabasePath(), filename);
+			}
+			catch (Exception ex)
+			{
+				global_functions.Entry_log(1, "create_back_worker -" + ex.Message, ex.StackTrace);
+
+			}
 		}
 
         private void create_backup_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -785,6 +863,8 @@ namespace HariOmImpex_LMS
 			FileInfo fileInfo = new FileInfo(filename);
 			sts_txt.Text = "Backup " + fileInfo.Name + " created.";
 			MessageBox.Show("Backup " + fileInfo.Name + " created.", "Backup creation", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+			global_functions.Entry_log(0, "create_backup_worker - success", "");
 		}
 
         private void contextMenuStrip3_Opening(object sender, CancelEventArgs e)
@@ -813,38 +893,40 @@ namespace HariOmImpex_LMS
 
         private void client_basic_datagrid_ColumnDisplayIndexChanged(object sender, DataGridViewColumnEventArgs e)
         {
-			if (refreshing)
-			{
-				return;
-			}
-			Dictionary<string, int> dictionary = new Dictionary<string, int>();
-			dictionary.Add("ID", 0);
-			foreach (DataGridViewColumn column in client_basic_datagrid.Columns)
-			{
-				if (column.Name != "ID")
-				{
-					dictionary.Add(column.Name, column.DisplayIndex);
-				}
-			}
-			FileStream serializationStream = new FileStream("ColumnOrder.bin", FileMode.Create);
-			((IFormatter)new BinaryFormatter()).Serialize((Stream)serializationStream, (object)dictionary);
+			//if (refreshing)
+			//{
+			//	return;
+			//}
+			//Dictionary<string, int> dictionary = new Dictionary<string, int>();
+			//dictionary.Add("ID", 0);
+			//foreach (DataGridViewColumn column in client_basic_datagrid.Columns)
+			//{
+			//	if (column.Name != "ID")
+			//	{
+			//		dictionary.Add(column.Name, column.DisplayIndex);
+			//	}
+			//}
+			//FileStream serializationStream = new FileStream("ColumnOrder.bin", FileMode.Create);
+			//((IFormatter)new BinaryFormatter()).Serialize((Stream)serializationStream, (object)dictionary);
 		}
 
 		private void OrderColumns()
 		{
-			if (!File.Exists("ColumnOrder.bin"))
-			{
-				return;
-			}
-			FileStream serializationStream = new FileStream("ColumnOrder.bin", FileMode.Open);
-			Dictionary<string, int> dictionary = (Dictionary<string, int>)((IFormatter)new BinaryFormatter()).Deserialize((Stream)serializationStream);
-			foreach (DataGridViewColumn column in client_basic_datagrid.Columns)
-			{
-				if (dictionary.ContainsKey(column.Name))
-				{
-					column.DisplayIndex = dictionary[column.Name];
-				}
-			}
+			//if (!File.Exists("ColumnOrder.bin"))
+			//{
+			//	return;
+			//}
+			//FileStream serializationStream = new FileStream("ColumnOrder.bin", FileMode.Open);
+			//Dictionary<string, int> dictionary = (Dictionary<string, int>)((IFormatter)new BinaryFormatter()).Deserialize((Stream)serializationStream);
+			//foreach (DataGridViewColumn column in client_basic_datagrid.Columns)
+			//{
+			//	if (dictionary.ContainsKey(column.Name))
+			//	{
+			//		column.DisplayIndex = dictionary[column.Name];
+			//	}
+			//}
+
+			//global_functions.Entry_log(0, "order_columns - success", "");
 		}
 
         private void client_basic_datagrid_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -906,6 +988,7 @@ namespace HariOmImpex_LMS
         private void reloadDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			load_all_data();
+			global_functions.Entry_log(0, "reload_databse_clicked - success", "");
 		}
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -914,6 +997,7 @@ namespace HariOmImpex_LMS
 			if (Settings.Default.quick_search)
 			{
 				button2_Click(null, null);
+				global_functions.Entry_log(0, "quick_search - success", "");
 			}
 		}
 
@@ -947,18 +1031,23 @@ namespace HariOmImpex_LMS
 		
         private void commitChangesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			
-
-			//syncChangesToolStripMenuItem.Visible = true;
 			update_query.RunWorkerAsync();
-
 		}
 
         private void update_query_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-			
-			dataAdapter.Update((DataTable)e.UserState);
-			Thread.Sleep(500);
+
+			try
+			{
+				dataAdapter.Update((DataTable)e.UserState);
+				Thread.Sleep(500);
+			}
+			catch(Exception ex)
+			{
+				update_query.CancelAsync();
+				global_functions.Entry_log(1, "commit_data_worker - " + ex.Message , ex.StackTrace);
+
+			}
 		}
 
         private void Reminders_timer_Tick(object sender, EventArgs e)
@@ -978,12 +1067,15 @@ namespace HariOmImpex_LMS
 			{
 				button3.Text = "Mute";
 				global_vars.mute_audio = false;
+				global_functions.Entry_log(0, "audio unmuted", "");
 			}
 			else
 			{
 				button3.Text = "Unmute";
 				global_vars.mute_audio = true;
 				audio.Stop();
+
+				global_functions.Entry_log(0, "audio muted", "");
 			}
 			
 		}
@@ -993,7 +1085,9 @@ namespace HariOmImpex_LMS
 			main_splitcontainer.Panel2Collapsed = false;
 			splitContainer5.Panel1Collapsed = true;
 			audio.Stop();
-        }
+
+			global_functions.Entry_log(0, "reminder_popup clicked", "");
+		}
 
         private void savedQueriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1002,12 +1096,23 @@ namespace HariOmImpex_LMS
 
 		void load_queries()
 		{
-			listBox1.Items.Clear();
-			string querypath = Path.GetDirectoryName(global_vars.getDatabasePath()) + "/queries";
-			foreach (string queries in Directory.GetFiles(querypath))
-			{	
-				listBox1.Items.Add(Path.GetFileNameWithoutExtension(queries));
+			try
+			{
+				listBox1.Items.Clear();
+				string querypath = Path.GetDirectoryName(global_vars.getDatabasePath()) + "/queries";
+				foreach (string queries in Directory.GetFiles(querypath))
+				{
+					listBox1.Items.Add(Path.GetFileNameWithoutExtension(queries));
 
+				}
+
+				global_functions.Entry_log(0, "load_queries - success", "");
+
+			}
+			catch(Exception ex)
+			{
+				set_status("Error occured while loading selected queries.. Please try again or restart the application.");
+				global_functions.Entry_log(1, "load_queries" + ex.Message, ex.StackTrace);
 			}
 
 		}
@@ -1024,10 +1129,25 @@ namespace HariOmImpex_LMS
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-			string querypath = Path.GetDirectoryName(global_vars.getDatabasePath()) + "/queries";
+			try
+			{
+				string querypath = Path.GetDirectoryName(global_vars.getDatabasePath()) + "/queries";
+				textBox2.Text = File.ReadAllText(querypath + "/" + listBox1.SelectedItem.ToString());
 
-			textBox2.Text = File.ReadAllText(querypath + "/"+ listBox1.SelectedItem.ToString());
+				global_functions.Entry_log(0, "query_loaded - success", "");
+			}
+			catch(Exception ex)
+			{
+				set_status("Error occured while loading the selected query.. Please check if the query is valid.");
+				global_functions.Entry_log(1, "query_loaded - " + ex.Message, ex.StackTrace);
+
+			}
 		}
+
+        private void applicationLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			global_functions.log_Console.Show();
+        }
     }
 
     public static class ExtensionMethods
