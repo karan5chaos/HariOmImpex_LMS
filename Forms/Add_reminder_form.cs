@@ -64,7 +64,8 @@ namespace HariOmImpex_LMS.Forms
 		private void button1_Click(object sender, EventArgs e)
 		{
 			add_reminder();
-			global_vars.updated = true;
+			global_vars.reminder_added = true;
+			Close();
 		}
 	}
     }

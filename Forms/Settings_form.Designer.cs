@@ -29,6 +29,7 @@ namespace HariOmImpex_LMS.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings_form));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -43,10 +44,10 @@ namespace HariOmImpex_LMS.Forms
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
             this.notif_combox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -198,12 +199,6 @@ namespace HariOmImpex_LMS.Forms
             this.checkBox3.Text = "Enable Quick-Search";
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "database.db";
-            this.openFileDialog1.Title = "Select databse file";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
@@ -217,6 +212,14 @@ namespace HariOmImpex_LMS.Forms
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Reminders settings";
             // 
+            // notif_combox
+            // 
+            this.notif_combox.FormattingEnabled = true;
+            this.notif_combox.Location = new System.Drawing.Point(132, 13);
+            this.notif_combox.Name = "notif_combox";
+            this.notif_combox.Size = new System.Drawing.Size(134, 21);
+            this.notif_combox.TabIndex = 1;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -226,13 +229,11 @@ namespace HariOmImpex_LMS.Forms
             this.label4.TabIndex = 0;
             this.label4.Text = "Select reminder tone:";
             // 
-            // notif_combox
+            // openFileDialog1
             // 
-            this.notif_combox.FormattingEnabled = true;
-            this.notif_combox.Location = new System.Drawing.Point(132, 13);
-            this.notif_combox.Name = "notif_combox";
-            this.notif_combox.Size = new System.Drawing.Size(134, 21);
-            this.notif_combox.TabIndex = 1;
+            this.openFileDialog1.FileName = "database.db";
+            this.openFileDialog1.Title = "Select databse file";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // button2
             // 
@@ -251,8 +252,14 @@ namespace HariOmImpex_LMS.Forms
             this.ClientSize = new System.Drawing.Size(445, 162);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Settings_form";
-            this.Text = "Settings_form";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_form_FormClosing);
             this.Load += new System.EventHandler(this.Settings_form_Load);
             this.tabControl1.ResumeLayout(false);

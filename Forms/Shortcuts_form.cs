@@ -68,11 +68,37 @@ namespace HariOmImpex_LMS.Forms
 				{
 					"Add new client",
 					"Ctrl + N"
+				},
+				{
+					"Increase font size",
+					"Ctrl + +"
+				},
+				{
+					"Decrease font size",
+					"Ctrl + -"
+				},
+				{
+					"Commit data",
+					"Ctrl + S"
 				}
 			})
 			{
 				dataGridView1.Rows.Add(item.Key, item.Value);
 			}
+		}
+
+        private void Shortcuts_form_KeyUp(object sender, KeyEventArgs e)
+        {
+			if (e.KeyCode == Keys.Home)
+			{
+				Hide();
+			}
+		}
+
+        private void Shortcuts_form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+			e.Cancel = true;
+			Hide();
 		}
     }
 }

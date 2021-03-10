@@ -40,6 +40,12 @@ namespace HariOmImpex_LMS
 			set;
 		}
 
+		public static bool reminder_added
+		{
+			get;
+			set;
+		}
+
 		public static string getDatabasePath()
 		{
 			return Settings.Default.database_path;

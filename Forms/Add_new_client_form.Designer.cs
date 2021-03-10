@@ -29,6 +29,7 @@ namespace HariOmImpex_LMS.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_new_client_form));
             this.gstnum_txtbx = new System.Windows.Forms.TextBox();
             this.dgftid_txtbx = new System.Windows.Forms.TextBox();
             this.dgftdate_txtbx = new System.Windows.Forms.TextBox();
@@ -556,7 +557,13 @@ namespace HariOmImpex_LMS.Forms
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Add_new_client_form";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add_new_client_form";
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

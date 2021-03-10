@@ -345,6 +345,7 @@ namespace HariOmImpex_LMS
 			timer1.Start();
 			timer2.Start();
 			check_reminders.Start();
+			check_queries.Start();
 
 
 
@@ -395,10 +396,10 @@ namespace HariOmImpex_LMS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-			if (global_vars.updated)
+			if (global_vars.reminder_added)
 			{
 				load_reminders();
-				global_vars.updated = false;
+				global_vars.reminder_added = false;
 			}
 		}
 
@@ -1019,6 +1020,13 @@ namespace HariOmImpex_LMS
 				global_vars.queryadded = false;
 			}
 			
+		}
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+			string querypath = Path.GetDirectoryName(global_vars.getDatabasePath()) + "/queries";
+
+			textBox2.Text = File.ReadAllText(querypath + "/"+ listBox1.SelectedItem.ToString());
 		}
     }
 

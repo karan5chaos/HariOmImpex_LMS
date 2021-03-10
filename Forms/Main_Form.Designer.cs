@@ -46,12 +46,6 @@ namespace HariOmImpex_LMS
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.add_user_btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.reloadDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loading_box = new System.Windows.Forms.ToolStripMenuItem();
-            this.edit_mode_button = new System.Windows.Forms.ToolStripMenuItem();
-            this.toggleSearchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportCurrentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -60,7 +54,6 @@ namespace HariOmImpex_LMS
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.textBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.button2 = new System.Windows.Forms.ToolStripButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -69,12 +62,7 @@ namespace HariOmImpex_LMS
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.iDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyCellValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip5 = new System.Windows.Forms.MenuStrip();
-            this.decrease_font_btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.increase_font_btn = new System.Windows.Forms.ToolStripMenuItem();
-            this.commitChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -84,23 +72,16 @@ namespace HariOmImpex_LMS
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.menuStrip4 = new System.Windows.Forms.MenuStrip();
-            this.executeCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveCurrentQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rem_panel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rem_split_container = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.today_rem_datagrid = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteSelectedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.upcoming_rem_datagrid = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
-            this.remindersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.addNewToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.create_backup_worker = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.query_builder_worker = new System.ComponentModel.BackgroundWorker();
@@ -113,6 +94,32 @@ namespace HariOmImpex_LMS
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.accessModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
+            this.check_queries = new System.Windows.Forms.Timer(this.components);
+            this.add_user_btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loading_box = new System.Windows.Forms.ToolStripMenuItem();
+            this.edit_mode_button = new System.Windows.Forms.ToolStripMenuItem();
+            this.toggleSearchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportCurrentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.ToolStripButton();
+            this.deleteSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyCellValueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.decrease_font_btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.increase_font_btn = new System.Windows.Forms.ToolStripMenuItem();
+            this.commitChangesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.executeCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveCurrentQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteSelectedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.remindersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.queryBuilderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,14 +132,7 @@ namespace HariOmImpex_LMS
             this.shortcutsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changelogsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.active_remiders = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
-            this.check_queries = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.main_splitcontainer)).BeginInit();
             this.main_splitcontainer.Panel1.SuspendLayout();
             this.main_splitcontainer.Panel2.SuspendLayout();
@@ -306,63 +306,6 @@ namespace HariOmImpex_LMS
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
             // 
-            // add_user_btn
-            // 
-            this.add_user_btn.Image = ((System.Drawing.Image)(resources.GetObject("add_user_btn.Image")));
-            this.add_user_btn.Name = "add_user_btn";
-            this.add_user_btn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.add_user_btn.Size = new System.Drawing.Size(108, 23);
-            this.add_user_btn.Text = "Add new client";
-            this.add_user_btn.Click += new System.EventHandler(this.add_user_btn_Click);
-            // 
-            // reloadDatabaseToolStripMenuItem
-            // 
-            this.reloadDatabaseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadDatabaseToolStripMenuItem.Image")));
-            this.reloadDatabaseToolStripMenuItem.Name = "reloadDatabaseToolStripMenuItem";
-            this.reloadDatabaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.reloadDatabaseToolStripMenuItem.Size = new System.Drawing.Size(120, 23);
-            this.reloadDatabaseToolStripMenuItem.Text = "Reload Database";
-            this.reloadDatabaseToolStripMenuItem.Click += new System.EventHandler(this.reloadDatabaseToolStripMenuItem_Click);
-            // 
-            // loading_box
-            // 
-            this.loading_box.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.loading_box.Image = ((System.Drawing.Image)(resources.GetObject("loading_box.Image")));
-            this.loading_box.Name = "loading_box";
-            this.loading_box.Size = new System.Drawing.Size(76, 23);
-            this.loading_box.Text = "Loading";
-            this.loading_box.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.loading_box.Visible = false;
-            // 
-            // edit_mode_button
-            // 
-            this.edit_mode_button.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.edit_mode_button.BackColor = System.Drawing.Color.IndianRed;
-            this.edit_mode_button.Image = ((System.Drawing.Image)(resources.GetObject("edit_mode_button.Image")));
-            this.edit_mode_button.Name = "edit_mode_button";
-            this.edit_mode_button.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.edit_mode_button.Size = new System.Drawing.Size(107, 23);
-            this.edit_mode_button.Text = "Edit Mode (Off)";
-            this.edit_mode_button.Click += new System.EventHandler(this.edit_mode_button_Click);
-            // 
-            // toggleSearchToolStripMenuItem1
-            // 
-            this.toggleSearchToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toggleSearchToolStripMenuItem1.Image")));
-            this.toggleSearchToolStripMenuItem1.Name = "toggleSearchToolStripMenuItem1";
-            this.toggleSearchToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.toggleSearchToolStripMenuItem1.Size = new System.Drawing.Size(102, 23);
-            this.toggleSearchToolStripMenuItem1.Text = "Toggle Search";
-            this.toggleSearchToolStripMenuItem1.Click += new System.EventHandler(this.toggleSearchToolStripMenuItem1_Click);
-            // 
-            // exportCurrentViewToolStripMenuItem
-            // 
-            this.exportCurrentViewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportCurrentViewToolStripMenuItem.Image")));
-            this.exportCurrentViewToolStripMenuItem.Name = "exportCurrentViewToolStripMenuItem";
-            this.exportCurrentViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.exportCurrentViewToolStripMenuItem.Size = new System.Drawing.Size(130, 23);
-            this.exportCurrentViewToolStripMenuItem.Text = "Export current view";
-            this.exportCurrentViewToolStripMenuItem.Click += new System.EventHandler(this.exportCurrentViewToolStripMenuItem_Click);
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -450,16 +393,6 @@ namespace HariOmImpex_LMS
             this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // button2
-            // 
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 24);
-            this.button2.Text = "Search";
-            this.button2.ToolTipText = "Search";
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.panel1);
@@ -504,6 +437,7 @@ namespace HariOmImpex_LMS
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.groupBox6);
+            this.splitContainer3.Panel2Collapsed = true;
             this.splitContainer3.Size = new System.Drawing.Size(680, 350);
             this.splitContainer3.SplitterDistance = 225;
             this.splitContainer3.TabIndex = 1;
@@ -551,7 +485,7 @@ namespace HariOmImpex_LMS
             this.client_basic_datagrid.ShowCellToolTips = false;
             this.client_basic_datagrid.ShowEditingIcon = false;
             this.client_basic_datagrid.ShowRowErrors = false;
-            this.client_basic_datagrid.Size = new System.Drawing.Size(680, 201);
+            this.client_basic_datagrid.Size = new System.Drawing.Size(680, 326);
             this.client_basic_datagrid.TabIndex = 2;
             this.client_basic_datagrid.ReadOnlyChanged += new System.EventHandler(this.client_basic_datagrid_ReadOnlyChanged);
             this.client_basic_datagrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.client_basic_datagrid_CellContentClick);
@@ -586,26 +520,6 @@ namespace HariOmImpex_LMS
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(206, 6);
             // 
-            // deleteSelectedToolStripMenuItem
-            // 
-            this.deleteSelectedToolStripMenuItem.ForeColor = System.Drawing.Color.Firebrick;
-            this.deleteSelectedToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteSelectedToolStripMenuItem.Image")));
-            this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
-            this.deleteSelectedToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
-            this.deleteSelectedToolStripMenuItem.Text = "Delete Selected";
-            this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem_Click);
-            // 
-            // copyCellValueToolStripMenuItem
-            // 
-            this.copyCellValueToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyCellValueToolStripMenuItem.Image")));
-            this.copyCellValueToolStripMenuItem.Name = "copyCellValueToolStripMenuItem";
-            this.copyCellValueToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.C)));
-            this.copyCellValueToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
-            this.copyCellValueToolStripMenuItem.Text = "Copy cell value";
-            this.copyCellValueToolStripMenuItem.Click += new System.EventHandler(this.copyCellValueToolStripMenuItem_Click);
-            // 
             // menuStrip5
             // 
             this.menuStrip5.Font = new System.Drawing.Font("Calibri", 8.25F);
@@ -618,41 +532,6 @@ namespace HariOmImpex_LMS
             this.menuStrip5.Size = new System.Drawing.Size(680, 24);
             this.menuStrip5.TabIndex = 3;
             this.menuStrip5.Text = "menuStrip5";
-            // 
-            // decrease_font_btn
-            // 
-            this.decrease_font_btn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.decrease_font_btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.decrease_font_btn.Image = ((System.Drawing.Image)(resources.GetObject("decrease_font_btn.Image")));
-            this.decrease_font_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.decrease_font_btn.Name = "decrease_font_btn";
-            this.decrease_font_btn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
-            this.decrease_font_btn.Size = new System.Drawing.Size(28, 20);
-            this.decrease_font_btn.Text = "toolStripButton3";
-            this.decrease_font_btn.ToolTipText = "Decrease font size";
-            this.decrease_font_btn.Click += new System.EventHandler(this.decrease_font_btn_Click);
-            // 
-            // increase_font_btn
-            // 
-            this.increase_font_btn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.increase_font_btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.increase_font_btn.Image = ((System.Drawing.Image)(resources.GetObject("increase_font_btn.Image")));
-            this.increase_font_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.increase_font_btn.Name = "increase_font_btn";
-            this.increase_font_btn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-            this.increase_font_btn.Size = new System.Drawing.Size(28, 20);
-            this.increase_font_btn.Text = "toolStripButton2";
-            this.increase_font_btn.ToolTipText = "Increase font size";
-            this.increase_font_btn.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // commitChangesToolStripMenuItem
-            // 
-            this.commitChangesToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.database_save;
-            this.commitChangesToolStripMenuItem.Name = "commitChangesToolStripMenuItem";
-            this.commitChangesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.commitChangesToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
-            this.commitChangesToolStripMenuItem.Text = "Commit changes";
-            this.commitChangesToolStripMenuItem.Click += new System.EventHandler(this.commitChangesToolStripMenuItem_Click);
             // 
             // groupBox6
             // 
@@ -732,6 +611,7 @@ namespace HariOmImpex_LMS
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(103, 31);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // statusStrip2
             // 
@@ -759,30 +639,6 @@ namespace HariOmImpex_LMS
             this.menuStrip4.Size = new System.Drawing.Size(674, 28);
             this.menuStrip4.TabIndex = 1;
             this.menuStrip4.Text = "menuStrip4";
-            // 
-            // executeCommandToolStripMenuItem
-            // 
-            this.executeCommandToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("executeCommandToolStripMenuItem.Image")));
-            this.executeCommandToolStripMenuItem.Name = "executeCommandToolStripMenuItem";
-            this.executeCommandToolStripMenuItem.Size = new System.Drawing.Size(126, 24);
-            this.executeCommandToolStripMenuItem.Text = "Execute Command";
-            this.executeCommandToolStripMenuItem.Click += new System.EventHandler(this.executeCommandToolStripMenuItem_Click);
-            // 
-            // clearToolStripMenuItem
-            // 
-            this.clearToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearToolStripMenuItem.Image")));
-            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
-            this.clearToolStripMenuItem.Text = "Clear";
-            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
-            // 
-            // saveCurrentQueryToolStripMenuItem
-            // 
-            this.saveCurrentQueryToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveCurrentQueryToolStripMenuItem.Image")));
-            this.saveCurrentQueryToolStripMenuItem.Name = "saveCurrentQueryToolStripMenuItem";
-            this.saveCurrentQueryToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
-            this.saveCurrentQueryToolStripMenuItem.Text = "Save current query";
-            this.saveCurrentQueryToolStripMenuItem.Click += new System.EventHandler(this.saveCurrentQueryToolStripMenuItem_Click);
             // 
             // rem_panel
             // 
@@ -871,15 +727,6 @@ namespace HariOmImpex_LMS
             this.contextMenuStrip2.Size = new System.Drawing.Size(177, 30);
             this.contextMenuStrip2.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip2_Opening);
             // 
-            // deleteSelectedToolStripMenuItem1
-            // 
-            this.deleteSelectedToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("deleteSelectedToolStripMenuItem1.Image")));
-            this.deleteSelectedToolStripMenuItem1.Name = "deleteSelectedToolStripMenuItem1";
-            this.deleteSelectedToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteSelectedToolStripMenuItem1.Size = new System.Drawing.Size(176, 26);
-            this.deleteSelectedToolStripMenuItem1.Text = "Delete Selected";
-            this.deleteSelectedToolStripMenuItem1.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem1_Click);
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.upcoming_rem_datagrid);
@@ -928,15 +775,6 @@ namespace HariOmImpex_LMS
             this.contextMenuStrip3.Size = new System.Drawing.Size(177, 30);
             this.contextMenuStrip3.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip3_Opening);
             // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem2.Image")));
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(176, 26);
-            this.toolStripMenuItem2.Text = "Delete Selected";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
             // menuStrip3
             // 
             this.menuStrip3.Font = new System.Drawing.Font("Calibri", 8.25F);
@@ -949,27 +787,6 @@ namespace HariOmImpex_LMS
             this.menuStrip3.Size = new System.Drawing.Size(328, 28);
             this.menuStrip3.TabIndex = 1;
             this.menuStrip3.Text = "menuStrip3";
-            // 
-            // remindersToolStripMenuItem1
-            // 
-            this.remindersToolStripMenuItem1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold);
-            this.remindersToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("remindersToolStripMenuItem1.Image")));
-            this.remindersToolStripMenuItem1.Name = "remindersToolStripMenuItem1";
-            this.remindersToolStripMenuItem1.Size = new System.Drawing.Size(89, 24);
-            this.remindersToolStripMenuItem1.Text = "Reminders";
-            // 
-            // addNewToolStripMenuItem2
-            // 
-            this.addNewToolStripMenuItem2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.addNewToolStripMenuItem2.AutoToolTip = true;
-            this.addNewToolStripMenuItem2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.addNewToolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("addNewToolStripMenuItem2.Image")));
-            this.addNewToolStripMenuItem2.Name = "addNewToolStripMenuItem2";
-            this.addNewToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.addNewToolStripMenuItem2.Size = new System.Drawing.Size(32, 24);
-            this.addNewToolStripMenuItem2.Text = "Add new";
-            this.addNewToolStripMenuItem2.ToolTipText = "Add new";
-            this.addNewToolStripMenuItem2.Click += new System.EventHandler(this.addNewToolStripMenuItem2_Click);
             // 
             // create_backup_worker
             // 
@@ -1060,120 +877,6 @@ namespace HariOmImpex_LMS
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // queryBuilderToolStripMenuItem
-            // 
-            this.queryBuilderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("queryBuilderToolStripMenuItem.Image")));
-            this.queryBuilderToolStripMenuItem.Name = "queryBuilderToolStripMenuItem";
-            this.queryBuilderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.queryBuilderToolStripMenuItem.Size = new System.Drawing.Size(103, 24);
-            this.queryBuilderToolStripMenuItem.Text = "Query Builder";
-            this.queryBuilderToolStripMenuItem.Click += new System.EventHandler(this.queryBuilderToolStripMenuItem_Click);
-            // 
-            // backupManagerToolStripMenuItem
-            // 
-            this.backupManagerToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.backup_wizard;
-            this.backupManagerToolStripMenuItem.Name = "backupManagerToolStripMenuItem";
-            this.backupManagerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.backupManagerToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
-            this.backupManagerToolStripMenuItem.Text = "Backup Manager";
-            this.backupManagerToolStripMenuItem.ToolTipText = "Create and manage your backups";
-            this.backupManagerToolStripMenuItem.Click += new System.EventHandler(this.backupManagerToolStripMenuItem_Click);
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.setting_tools;
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            this.settingsToolStripMenuItem.ToolTipText = "Application settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
-            // 
-            // uISizeToolStripMenuItem
-            // 
-            this.uISizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.defaultToolStripMenuItem,
-            this.bigToolStripMenuItem});
-            this.uISizeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uISizeToolStripMenuItem.Image")));
-            this.uISizeToolStripMenuItem.Name = "uISizeToolStripMenuItem";
-            this.uISizeToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
-            this.uISizeToolStripMenuItem.Text = "UI size";
-            // 
-            // defaultToolStripMenuItem
-            // 
-            this.defaultToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("defaultToolStripMenuItem.Image")));
-            this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
-            this.defaultToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
-            this.defaultToolStripMenuItem.ShowShortcutKeys = false;
-            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(106, 26);
-            this.defaultToolStripMenuItem.Text = "Default";
-            this.defaultToolStripMenuItem.Click += new System.EventHandler(this.defaultToolStripMenuItem_Click);
-            // 
-            // bigToolStripMenuItem
-            // 
-            this.bigToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bigToolStripMenuItem.Image")));
-            this.bigToolStripMenuItem.Name = "bigToolStripMenuItem";
-            this.bigToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-            this.bigToolStripMenuItem.ShowShortcutKeys = false;
-            this.bigToolStripMenuItem.Size = new System.Drawing.Size(106, 26);
-            this.bigToolStripMenuItem.Text = "Big";
-            this.bigToolStripMenuItem.Click += new System.EventHandler(this.bigToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectivityCheckToolStripMenuItem,
-            this.aboutApplicationToolStripMenuItem,
-            this.shortcutsListToolStripMenuItem,
-            this.changelogsToolStripMenuItem});
-            this.helpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem.Image")));
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // connectivityCheckToolStripMenuItem
-            // 
-            this.connectivityCheckToolStripMenuItem.Enabled = false;
-            this.connectivityCheckToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("connectivityCheckToolStripMenuItem.Image")));
-            this.connectivityCheckToolStripMenuItem.Name = "connectivityCheckToolStripMenuItem";
-            this.connectivityCheckToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.connectivityCheckToolStripMenuItem.Text = "Connectivity check";
-            this.connectivityCheckToolStripMenuItem.Visible = false;
-            // 
-            // aboutApplicationToolStripMenuItem
-            // 
-            this.aboutApplicationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutApplicationToolStripMenuItem.Image")));
-            this.aboutApplicationToolStripMenuItem.Name = "aboutApplicationToolStripMenuItem";
-            this.aboutApplicationToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.aboutApplicationToolStripMenuItem.Text = "About Application";
-            this.aboutApplicationToolStripMenuItem.Click += new System.EventHandler(this.aboutApplicationToolStripMenuItem_Click);
-            // 
-            // shortcutsListToolStripMenuItem
-            // 
-            this.shortcutsListToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.shortcuts;
-            this.shortcutsListToolStripMenuItem.Name = "shortcutsListToolStripMenuItem";
-            this.shortcutsListToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.shortcutsListToolStripMenuItem.Text = "Shortcuts list";
-            this.shortcutsListToolStripMenuItem.Click += new System.EventHandler(this.shortcutsListToolStripMenuItem_Click);
-            // 
-            // changelogsToolStripMenuItem
-            // 
-            this.changelogsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changelogsToolStripMenuItem.Image")));
-            this.changelogsToolStripMenuItem.Name = "changelogsToolStripMenuItem";
-            this.changelogsToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
-            this.changelogsToolStripMenuItem.Text = "Changelogs";
-            this.changelogsToolStripMenuItem.Click += new System.EventHandler(this.changelogsToolStripMenuItem_Click);
-            // 
-            // active_remiders
-            // 
-            this.active_remiders.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.active_remiders.CheckOnClick = true;
-            this.active_remiders.Image = ((System.Drawing.Image)(resources.GetObject("active_remiders.Image")));
-            this.active_remiders.Name = "active_remiders";
-            this.active_remiders.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
-            this.active_remiders.Size = new System.Drawing.Size(90, 24);
-            this.active_remiders.Text = "Reminders";
-            this.active_remiders.Click += new System.EventHandler(this.active_remiders_Click);
-            // 
             // splitContainer5
             // 
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1257,6 +960,306 @@ namespace HariOmImpex_LMS
             // 
             this.check_queries.Tick += new System.EventHandler(this.check_queries_Tick);
             // 
+            // add_user_btn
+            // 
+            this.add_user_btn.Enabled = false;
+            this.add_user_btn.Image = global::HariOmImpex_LMS.Properties.Resources.user_add;
+            this.add_user_btn.Name = "add_user_btn";
+            this.add_user_btn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.add_user_btn.Size = new System.Drawing.Size(108, 23);
+            this.add_user_btn.Text = "Add new client";
+            this.add_user_btn.Click += new System.EventHandler(this.add_user_btn_Click);
+            // 
+            // reloadDatabaseToolStripMenuItem
+            // 
+            this.reloadDatabaseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reloadDatabaseToolStripMenuItem.Image")));
+            this.reloadDatabaseToolStripMenuItem.Name = "reloadDatabaseToolStripMenuItem";
+            this.reloadDatabaseToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.reloadDatabaseToolStripMenuItem.Size = new System.Drawing.Size(120, 23);
+            this.reloadDatabaseToolStripMenuItem.Text = "Reload Database";
+            this.reloadDatabaseToolStripMenuItem.Click += new System.EventHandler(this.reloadDatabaseToolStripMenuItem_Click);
+            // 
+            // loading_box
+            // 
+            this.loading_box.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.loading_box.Image = ((System.Drawing.Image)(resources.GetObject("loading_box.Image")));
+            this.loading_box.Name = "loading_box";
+            this.loading_box.Size = new System.Drawing.Size(76, 23);
+            this.loading_box.Text = "Loading";
+            this.loading_box.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.loading_box.Visible = false;
+            // 
+            // edit_mode_button
+            // 
+            this.edit_mode_button.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.edit_mode_button.BackColor = System.Drawing.Color.IndianRed;
+            this.edit_mode_button.Image = ((System.Drawing.Image)(resources.GetObject("edit_mode_button.Image")));
+            this.edit_mode_button.Name = "edit_mode_button";
+            this.edit_mode_button.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.edit_mode_button.Size = new System.Drawing.Size(107, 23);
+            this.edit_mode_button.Text = "Edit Mode (Off)";
+            this.edit_mode_button.Click += new System.EventHandler(this.edit_mode_button_Click);
+            // 
+            // toggleSearchToolStripMenuItem1
+            // 
+            this.toggleSearchToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toggleSearchToolStripMenuItem1.Image")));
+            this.toggleSearchToolStripMenuItem1.Name = "toggleSearchToolStripMenuItem1";
+            this.toggleSearchToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.toggleSearchToolStripMenuItem1.Size = new System.Drawing.Size(102, 23);
+            this.toggleSearchToolStripMenuItem1.Text = "Toggle Search";
+            this.toggleSearchToolStripMenuItem1.Click += new System.EventHandler(this.toggleSearchToolStripMenuItem1_Click);
+            // 
+            // exportCurrentViewToolStripMenuItem
+            // 
+            this.exportCurrentViewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportCurrentViewToolStripMenuItem.Image")));
+            this.exportCurrentViewToolStripMenuItem.Name = "exportCurrentViewToolStripMenuItem";
+            this.exportCurrentViewToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.exportCurrentViewToolStripMenuItem.Size = new System.Drawing.Size(130, 23);
+            this.exportCurrentViewToolStripMenuItem.Text = "Export current view";
+            this.exportCurrentViewToolStripMenuItem.Click += new System.EventHandler(this.exportCurrentViewToolStripMenuItem_Click);
+            // 
+            // button2
+            // 
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(63, 24);
+            this.button2.Text = "Search";
+            this.button2.ToolTipText = "Search";
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // deleteSelectedToolStripMenuItem
+            // 
+            this.deleteSelectedToolStripMenuItem.ForeColor = System.Drawing.Color.Firebrick;
+            this.deleteSelectedToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteSelectedToolStripMenuItem.Image")));
+            this.deleteSelectedToolStripMenuItem.Name = "deleteSelectedToolStripMenuItem";
+            this.deleteSelectedToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteSelectedToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.deleteSelectedToolStripMenuItem.Text = "Delete Selected";
+            this.deleteSelectedToolStripMenuItem.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem_Click);
+            // 
+            // copyCellValueToolStripMenuItem
+            // 
+            this.copyCellValueToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyCellValueToolStripMenuItem.Image")));
+            this.copyCellValueToolStripMenuItem.Name = "copyCellValueToolStripMenuItem";
+            this.copyCellValueToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.C)));
+            this.copyCellValueToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
+            this.copyCellValueToolStripMenuItem.Text = "Copy cell value";
+            this.copyCellValueToolStripMenuItem.Click += new System.EventHandler(this.copyCellValueToolStripMenuItem_Click);
+            // 
+            // decrease_font_btn
+            // 
+            this.decrease_font_btn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.decrease_font_btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.decrease_font_btn.Image = ((System.Drawing.Image)(resources.GetObject("decrease_font_btn.Image")));
+            this.decrease_font_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.decrease_font_btn.Name = "decrease_font_btn";
+            this.decrease_font_btn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
+            this.decrease_font_btn.Size = new System.Drawing.Size(28, 20);
+            this.decrease_font_btn.Text = "toolStripButton3";
+            this.decrease_font_btn.ToolTipText = "Decrease font size";
+            this.decrease_font_btn.Click += new System.EventHandler(this.decrease_font_btn_Click);
+            // 
+            // increase_font_btn
+            // 
+            this.increase_font_btn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.increase_font_btn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.increase_font_btn.Image = ((System.Drawing.Image)(resources.GetObject("increase_font_btn.Image")));
+            this.increase_font_btn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.increase_font_btn.Name = "increase_font_btn";
+            this.increase_font_btn.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
+            this.increase_font_btn.Size = new System.Drawing.Size(28, 20);
+            this.increase_font_btn.Text = "toolStripButton2";
+            this.increase_font_btn.ToolTipText = "Increase font size";
+            this.increase_font_btn.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // commitChangesToolStripMenuItem
+            // 
+            this.commitChangesToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.database_save;
+            this.commitChangesToolStripMenuItem.Name = "commitChangesToolStripMenuItem";
+            this.commitChangesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.commitChangesToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
+            this.commitChangesToolStripMenuItem.Text = "Commit changes";
+            this.commitChangesToolStripMenuItem.Click += new System.EventHandler(this.commitChangesToolStripMenuItem_Click);
+            // 
+            // executeCommandToolStripMenuItem
+            // 
+            this.executeCommandToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("executeCommandToolStripMenuItem.Image")));
+            this.executeCommandToolStripMenuItem.Name = "executeCommandToolStripMenuItem";
+            this.executeCommandToolStripMenuItem.Size = new System.Drawing.Size(126, 24);
+            this.executeCommandToolStripMenuItem.Text = "Execute Command";
+            this.executeCommandToolStripMenuItem.Click += new System.EventHandler(this.executeCommandToolStripMenuItem_Click);
+            // 
+            // clearToolStripMenuItem
+            // 
+            this.clearToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("clearToolStripMenuItem.Image")));
+            this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.clearToolStripMenuItem.Text = "Clear";
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // saveCurrentQueryToolStripMenuItem
+            // 
+            this.saveCurrentQueryToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveCurrentQueryToolStripMenuItem.Image")));
+            this.saveCurrentQueryToolStripMenuItem.Name = "saveCurrentQueryToolStripMenuItem";
+            this.saveCurrentQueryToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.saveCurrentQueryToolStripMenuItem.Text = "Save current query";
+            this.saveCurrentQueryToolStripMenuItem.Click += new System.EventHandler(this.saveCurrentQueryToolStripMenuItem_Click);
+            // 
+            // deleteSelectedToolStripMenuItem1
+            // 
+            this.deleteSelectedToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("deleteSelectedToolStripMenuItem1.Image")));
+            this.deleteSelectedToolStripMenuItem1.Name = "deleteSelectedToolStripMenuItem1";
+            this.deleteSelectedToolStripMenuItem1.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteSelectedToolStripMenuItem1.Size = new System.Drawing.Size(176, 26);
+            this.deleteSelectedToolStripMenuItem1.Text = "Delete Selected";
+            this.deleteSelectedToolStripMenuItem1.Click += new System.EventHandler(this.deleteSelectedToolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem2.Image")));
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(176, 26);
+            this.toolStripMenuItem2.Text = "Delete Selected";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // remindersToolStripMenuItem1
+            // 
+            this.remindersToolStripMenuItem1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold);
+            this.remindersToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("remindersToolStripMenuItem1.Image")));
+            this.remindersToolStripMenuItem1.Name = "remindersToolStripMenuItem1";
+            this.remindersToolStripMenuItem1.Size = new System.Drawing.Size(89, 24);
+            this.remindersToolStripMenuItem1.Text = "Reminders";
+            // 
+            // addNewToolStripMenuItem2
+            // 
+            this.addNewToolStripMenuItem2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.addNewToolStripMenuItem2.AutoToolTip = true;
+            this.addNewToolStripMenuItem2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.addNewToolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("addNewToolStripMenuItem2.Image")));
+            this.addNewToolStripMenuItem2.Name = "addNewToolStripMenuItem2";
+            this.addNewToolStripMenuItem2.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.addNewToolStripMenuItem2.Size = new System.Drawing.Size(32, 24);
+            this.addNewToolStripMenuItem2.Text = "Add new";
+            this.addNewToolStripMenuItem2.ToolTipText = "Add new";
+            this.addNewToolStripMenuItem2.Click += new System.EventHandler(this.addNewToolStripMenuItem2_Click);
+            // 
+            // queryBuilderToolStripMenuItem
+            // 
+            this.queryBuilderToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("queryBuilderToolStripMenuItem.Image")));
+            this.queryBuilderToolStripMenuItem.Name = "queryBuilderToolStripMenuItem";
+            this.queryBuilderToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
+            this.queryBuilderToolStripMenuItem.Size = new System.Drawing.Size(103, 24);
+            this.queryBuilderToolStripMenuItem.Text = "Query Builder";
+            this.queryBuilderToolStripMenuItem.Click += new System.EventHandler(this.queryBuilderToolStripMenuItem_Click);
+            // 
+            // backupManagerToolStripMenuItem
+            // 
+            this.backupManagerToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.backup_wizard;
+            this.backupManagerToolStripMenuItem.Name = "backupManagerToolStripMenuItem";
+            this.backupManagerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            this.backupManagerToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
+            this.backupManagerToolStripMenuItem.Text = "Backup Manager";
+            this.backupManagerToolStripMenuItem.ToolTipText = "Create and manage your backups";
+            this.backupManagerToolStripMenuItem.Click += new System.EventHandler(this.backupManagerToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.setting_tools;
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.ToolTipText = "Application settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // uISizeToolStripMenuItem
+            // 
+            this.uISizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.defaultToolStripMenuItem,
+            this.bigToolStripMenuItem});
+            this.uISizeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uISizeToolStripMenuItem.Image")));
+            this.uISizeToolStripMenuItem.Name = "uISizeToolStripMenuItem";
+            this.uISizeToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.uISizeToolStripMenuItem.Text = "UI size";
+            // 
+            // defaultToolStripMenuItem
+            // 
+            this.defaultToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("defaultToolStripMenuItem.Image")));
+            this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
+            this.defaultToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
+            this.defaultToolStripMenuItem.ShowShortcutKeys = false;
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.defaultToolStripMenuItem.Text = "Default";
+            this.defaultToolStripMenuItem.Click += new System.EventHandler(this.defaultToolStripMenuItem_Click);
+            // 
+            // bigToolStripMenuItem
+            // 
+            this.bigToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bigToolStripMenuItem.Image")));
+            this.bigToolStripMenuItem.Name = "bigToolStripMenuItem";
+            this.bigToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
+            this.bigToolStripMenuItem.ShowShortcutKeys = false;
+            this.bigToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.bigToolStripMenuItem.Text = "Big";
+            this.bigToolStripMenuItem.Click += new System.EventHandler(this.bigToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectivityCheckToolStripMenuItem,
+            this.aboutApplicationToolStripMenuItem,
+            this.shortcutsListToolStripMenuItem,
+            this.changelogsToolStripMenuItem});
+            this.helpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem.Image")));
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // connectivityCheckToolStripMenuItem
+            // 
+            this.connectivityCheckToolStripMenuItem.Enabled = false;
+            this.connectivityCheckToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("connectivityCheckToolStripMenuItem.Image")));
+            this.connectivityCheckToolStripMenuItem.Name = "connectivityCheckToolStripMenuItem";
+            this.connectivityCheckToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.connectivityCheckToolStripMenuItem.Text = "Connectivity check";
+            this.connectivityCheckToolStripMenuItem.Visible = false;
+            // 
+            // aboutApplicationToolStripMenuItem
+            // 
+            this.aboutApplicationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutApplicationToolStripMenuItem.Image")));
+            this.aboutApplicationToolStripMenuItem.Name = "aboutApplicationToolStripMenuItem";
+            this.aboutApplicationToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.aboutApplicationToolStripMenuItem.Text = "About Application";
+            this.aboutApplicationToolStripMenuItem.Click += new System.EventHandler(this.aboutApplicationToolStripMenuItem_Click);
+            // 
+            // shortcutsListToolStripMenuItem
+            // 
+            this.shortcutsListToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.shortcuts;
+            this.shortcutsListToolStripMenuItem.Name = "shortcutsListToolStripMenuItem";
+            this.shortcutsListToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.shortcutsListToolStripMenuItem.Text = "Shortcuts list";
+            this.shortcutsListToolStripMenuItem.Click += new System.EventHandler(this.shortcutsListToolStripMenuItem_Click);
+            // 
+            // changelogsToolStripMenuItem
+            // 
+            this.changelogsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changelogsToolStripMenuItem.Image")));
+            this.changelogsToolStripMenuItem.Name = "changelogsToolStripMenuItem";
+            this.changelogsToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.changelogsToolStripMenuItem.Text = "Changelogs";
+            this.changelogsToolStripMenuItem.Click += new System.EventHandler(this.changelogsToolStripMenuItem_Click);
+            // 
+            // active_remiders
+            // 
+            this.active_remiders.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.active_remiders.CheckOnClick = true;
+            this.active_remiders.Image = ((System.Drawing.Image)(resources.GetObject("active_remiders.Image")));
+            this.active_remiders.Name = "active_remiders";
+            this.active_remiders.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
+            this.active_remiders.Size = new System.Drawing.Size(90, 24);
+            this.active_remiders.Text = "Reminders";
+            this.active_remiders.Click += new System.EventHandler(this.active_remiders_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1267,8 +1270,11 @@ namespace HariOmImpex_LMS
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip5;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HariOm Impex - Knowledge Management System";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
