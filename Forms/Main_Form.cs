@@ -617,9 +617,9 @@ namespace HariOmImpex_LMS
 			try
 			{
 				loading_box.Visible = false;
-				today_rem_datagrid.DataSource = today_reminder.Tables[0].DefaultView;
-				upcoming_rem_datagrid.DataSource = upcoming_reminder.Tables[0].DefaultView;
-				global_vars.reminders = today_rem_datagrid.Rows.Count;
+				//today_rem_datagrid.DataSource = today_reminder.Tables[0].DefaultView;
+				//upcoming_rem_datagrid.DataSource = upcoming_reminder.Tables[0].DefaultView;
+				global_vars.reminders = today_reminder.Tables[0].Rows.Count;
 
 				if (global_vars.reminders > 0)
 				{
@@ -692,8 +692,7 @@ namespace HariOmImpex_LMS
 
         private void addNewToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-			new Add_reminder_form().ShowDialog();
-			global_functions.Entry_log(0, "add_reminder_form opened", "");
+			
 		}
 
         private void fileSystemWatcher1_Changed(object sender, FileSystemEventArgs e)
@@ -789,26 +788,28 @@ namespace HariOmImpex_LMS
 
         private void active_remiders_Click(object sender, EventArgs e)
         {
-			if (main_splitcontainer.Panel2Collapsed)
-			{
-				main_splitcontainer.Panel2Collapsed = false;
-				
-				load_reminders();
+			Reminder_window_form reminder_ = new Reminder_window_form();
+			reminder_.Show();
+			//if (main_splitcontainer.Panel2Collapsed)
+			//{
+			//	main_splitcontainer.Panel2Collapsed = false;
 
-				if (global_vars.reminders > 0)
-				{
-					Transition.run(groupBox3, "BackColor", Color.Khaki, new TransitionType_Flash(999999, 99999));
-				}
+			//	load_reminders();
 
-					global_functions.Entry_log(0, "Reminders panel collapsed = false", "");
-			}
-			else
-			{
-				main_splitcontainer.Panel2Collapsed = true;
-				global_functions.Entry_log(0, "Reminders panel collapsed = true", "");
+			//	if (global_vars.reminders > 0)
+			//	{
+			//		Transition.run(groupBox3, "BackColor", Color.Khaki, new TransitionType_Flash(999999, 99999));
+			//	}
 
-			}
-			global_vars.ispanelcollapsed = main_splitcontainer.Panel2Collapsed;
+			//		global_functions.Entry_log(0, "Reminders panel collapsed = false", "");
+			//}
+			//else
+			//{
+			//	main_splitcontainer.Panel2Collapsed = true;
+			//	global_functions.Entry_log(0, "Reminders panel collapsed = true", "");
+
+			//}
+			//global_vars.ispanelcollapsed = main_splitcontainer.Panel2Collapsed;
 		}
 
         private void executeCommandToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1214,6 +1215,11 @@ namespace HariOmImpex_LMS
         private void applicationLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			global_functions.log_Console.Show();
+        }
+
+        private void remwindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			
         }
     }
 
