@@ -143,9 +143,18 @@ namespace HariOmImpex_LMS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream notif_sound {
+        internal static System.IO.UnmanagedMemoryStream notif_sound_0 {
             get {
-                return ResourceManager.GetStream("notif_sound", resourceCulture);
+                return ResourceManager.GetStream("notif_sound_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream notif_sound_1 {
+            get {
+                return ResourceManager.GetStream("notif_sound_1", resourceCulture);
             }
         }
         
@@ -155,6 +164,33 @@ namespace HariOmImpex_LMS.Properties {
         internal static System.IO.UnmanagedMemoryStream notif_sound_2 {
             get {
                 return ResourceManager.GetStream("notif_sound_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream notif_sound_3 {
+            get {
+                return ResourceManager.GetStream("notif_sound_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream notif_sound_4 {
+            get {
+                return ResourceManager.GetStream("notif_sound_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream notif_sound_5 {
+            get {
+                return ResourceManager.GetStream("notif_sound_5", resourceCulture);
             }
         }
         

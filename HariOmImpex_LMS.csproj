@@ -70,10 +70,16 @@
     <ManifestKeyFile>HariOmImpex_LMS_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutocompleteMenu, Version=1.3.5.0, Culture=neutral, processorArchitecture=MSIL">
@@ -292,6 +298,7 @@
     <None Include="app.config" />
     <None Include="HariOmImpex_LMS_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -358,6 +365,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="name_manager.ico" />
+    <None Include="Resources\juntos-607.wav" />
+    <None Include="Resources\got-it-done-613.wav" />
+    <None Include="Resources\goes-without-saying-608.wav" />
+    <None Include="Resources\pristine-609.wav" />
+    <None Include="Resources\got-it-done-613.mp3" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

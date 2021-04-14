@@ -55,13 +55,13 @@ namespace HariOmImpex_LMS.Forms
                 {
                     case 0:
                         {
-                            audio.Stream = Properties.Resources.notif_sound;
+                            audio.Stream = Properties.Resources.notif_sound_0;
                         }
                         break;
 
                     case 1:
                         {
-                            audio.Stream = Properties.Resources.notif_sound_2;
+                            audio.Stream = Properties.Resources.notif_sound_1;
                         }
                         break;
                 }

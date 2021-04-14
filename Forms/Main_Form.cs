@@ -46,6 +46,8 @@ namespace HariOmImpex_LMS
         {
             InitializeComponent();
 
+            Properties.Settings.Default.PropertyChanged += Default_PropertyChanged;
+
 			//global_vars.hide_rem_window = false;
 			control_list = new List<Control>();
 			foreach (Control control in base.Controls)
@@ -66,27 +68,77 @@ namespace HariOmImpex_LMS
 				global_functions.Entry_log(0, "UI_size set to 1","");
 			}
 
-			switch (Properties.Settings.Default.selected_notif_sound)
-			{
-				case 0:
-					{
-						audio.Stream = Properties.Resources.notif_sound;
-					}
-					break;
 
-				case 1:
+
+			string notif_name = "notif_sound_" + Properties.Settings.Default.selected_notif_sound.ToString();
+
+			
+
+            switch (Properties.Settings.Default.selected_notif_sound)
+            {
+                case 0:
+                    {
+                        audio.Stream = Properties.Resources.notif_sound_0;
+                    }
+                    break;
+
+                case 1:
+                    {
+                        audio.Stream = Properties.Resources.notif_sound_1;
+                    }
+                    break;
+				case 2:
 					{
 						audio.Stream = Properties.Resources.notif_sound_2;
 					}
 					break;
+
+				case 3:
+					{
+						audio.Stream = Properties.Resources.notif_sound_3;
+					}
+					break;
+				case 4:
+					{
+						audio.Stream = Properties.Resources.notif_sound_4;
+					}
+					break;
+				case 5:
+					{
+						audio.Stream = Properties.Resources.notif_sound_5;
+					}
+					break;
 			}
+
+
 			global_functions.Entry_log(0, "audio stream configured.","");
 
-
+			if (Properties.Settings.Default.save_mode == 0)
+			{
+				commit_button.Enabled = false;
+			}
+			else if (Properties.Settings.Default.save_mode == 1)
+			{
+				commit_button.Enabled = true;
+			}
 		}
 
+        private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
 
-		private void get_column_names()
+				if (Properties.Settings.Default.save_mode == 0)
+				{
+					commit_button.Enabled = false;
+				}
+				else if(Properties.Settings.Default.save_mode == 1)
+				{
+					commit_button.Enabled = true;
+				}
+
+            //throw new NotImplementedException();
+        }
+
+        private void get_column_names()
 		{
 			
 			comboBox1.Items.Clear();
@@ -341,8 +393,8 @@ namespace HariOmImpex_LMS
 
 
 			
-			new Login_form().ShowDialog();
-			set_access_mode();
+			//new Login_form().ShowDialog();
+			//set_access_mode();
 			if (!File.Exists(global_vars.getDatabasePath()))
 			{
 				new Settings_form().ShowDialog();
@@ -532,6 +584,7 @@ namespace HariOmImpex_LMS
 			global_functions.Entry_log(0, "get_data_dowork - success", "");
 		}
 
+
 		
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -561,25 +614,33 @@ namespace HariOmImpex_LMS
 
         private void get_reminders_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-			loading_box.Visible = false;
-			today_rem_datagrid.DataSource = today_reminder.Tables[0].DefaultView;
-			upcoming_rem_datagrid.DataSource = upcoming_reminder.Tables[0].DefaultView;
-			global_vars.reminders = today_rem_datagrid.Rows.Count;
-
-			if (global_vars.reminders > 0)
+			try
 			{
-				active_remiders.Text = global_vars.reminders + " Reminder(s) active!";
-				reminder_pane_visiblechanged();
+				loading_box.Visible = false;
+				today_rem_datagrid.DataSource = today_reminder.Tables[0].DefaultView;
+				upcoming_rem_datagrid.DataSource = upcoming_reminder.Tables[0].DefaultView;
+				global_vars.reminders = today_rem_datagrid.Rows.Count;
+
+				if (global_vars.reminders > 0)
+				{
+					active_remiders.Text = global_vars.reminders + " Reminder(s) active!";
+					reminder_pane_visiblechanged();
+				}
+				else
+				{
+					active_remiders.Text = "Reminders";
+				}
+
+				today_reminder.Dispose();
+				upcoming_reminder.Dispose();
+
+				global_functions.Entry_log(0, "get_reminders_workcompleted - success", "");
 			}
-			else
+
+			catch(Exception exc)
 			{
-				active_remiders.Text = "Reminders";
+				global_functions.Entry_log(1, "get_reminders_workcompleted" + exc.Message, exc.StackTrace);
 			}
-
-			today_reminder.Dispose();
-			upcoming_reminder.Dispose();
-
-			global_functions.Entry_log(0, "get_reminders_dowork - success","");
 		}
 
         private void check_connectivity_DoWork(object sender, DoWorkEventArgs e)
@@ -607,6 +668,7 @@ namespace HariOmImpex_LMS
 				splitContainer5.Panel1Collapsed = false;
 				if (!global_vars.mute_audio && played == false)
 				{
+					audio.Stop();
 					audio.Play();
 					played = true;
 					Transition.run(panel6, "BackColor", Color.Khaki, new TransitionType_Flash(999999,99999));
@@ -733,7 +795,12 @@ namespace HariOmImpex_LMS
 				
 				load_reminders();
 
-				global_functions.Entry_log(0, "Reminders panel collapsed = false", "");
+				if (global_vars.reminders > 0)
+				{
+					Transition.run(groupBox3, "BackColor", Color.Khaki, new TransitionType_Flash(999999, 99999));
+				}
+
+					global_functions.Entry_log(0, "Reminders panel collapsed = false", "");
 			}
 			else
 			{
@@ -1173,7 +1240,9 @@ namespace HariOmImpex_LMS
 			form.Close();
 		}
 
-	
+		
+
+
 
 	}
 

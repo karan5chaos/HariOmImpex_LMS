@@ -31,6 +31,7 @@ namespace HariOmImpex_LMS.Forms
             textBox1.Text = Settings.Default.database_path;
             textBox2.Text = Settings.Default.backup_path;
             comboBox1.SelectedIndex = Settings.Default.backup_time;
+            comboBox2.SelectedIndex = Settings.Default.save_mode;
             checkBox3.Checked = Settings.Default.quick_search;
             checkBox4.Checked = Settings.Default.load_data_startup;
             load_notif_sounds();
@@ -57,15 +58,24 @@ namespace HariOmImpex_LMS.Forms
         void load_notif_sounds()
         {
             ResourceSet rsrcSet = Properties.Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, false, true);
+            List<string> notif = new List<string>();
 
+            
             foreach (DictionaryEntry entry in rsrcSet)
             {
                 if (entry.Key.ToString().Contains("notif"))
                 {
-                    notif_combox.Items.Add(entry.Key.ToString());
+                    notif.Add(entry.Key.ToString());
+                    //notif_combox.Items.Add();
                 }
             }
+            notif.Sort();
 
+            foreach (string item in notif)
+            {
+                notif_combox.Items.Add(item);
+
+            }
 
             //var assembly = Assembly.GetExecutingAssembly();
 
@@ -115,23 +125,38 @@ namespace HariOmImpex_LMS.Forms
         {
             if (notif_combox.Text != "")
             {
-                switch (notif_combox.SelectedIndex)
-                {
-                    case 0:
-                        {
-                            audio.Stream = Properties.Resources.notif_sound;
-                        }
-                        break;
 
-                    case 1:
-                        {
-                            audio.Stream = Properties.Resources.notif_sound_2;
-                        }
-                        break;
-                }
+                string notif_name = "notif_sound_" + notif_combox.SelectedIndex.ToString();
+
+                audio.Stream = Properties.Resources.ResourceManager.GetStream(notif_name);
+
+                //switch (notif_combox.SelectedIndex)
+                //{
+                //    case 0:
+                //        {
+                //            audio.Stream = Properties.Resources.notif_sound_0;
+                //        }
+                //        break;
+
+                //    case 1:
+                //        {
+                //            audio.Stream = Properties.Resources.notif_sound_1;
+                //        }
+                //        break;
+                //}
 
                 audio.Play(); 
             }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Default.save_mode = comboBox2.SelectedIndex;
+        }
+
+        private void notif_combox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

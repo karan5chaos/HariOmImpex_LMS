@@ -141,5 +141,17 @@ namespace HariOmImpex_LMS.Properties {
                 this["selected_notif_sound"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int save_mode {
+            get {
+                return ((int)(this["save_mode"]));
+            }
+            set {
+                this["save_mode"] = value;
+            }
+        }
     }
 }
