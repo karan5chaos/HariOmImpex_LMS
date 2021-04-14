@@ -261,19 +261,19 @@ namespace HariOmImpex_LMS
 
 		}
 
-		private void load_reminders()
-		{
-			global_functions.Entry_log(0, "load_reminders - start", "");
-			today_rem_datagrid.DataSource = null;
-			upcoming_rem_datagrid.DataSource = null;
-			if (!get_reminders.IsBusy && check_connected())
-			{
-				loading_box.Visible = true;
-				get_reminders.RunWorkerAsync();
-			}
-		}
+        private void load_reminders()
+        {
+            global_functions.Entry_log(0, "load_reminders - start", "");
+            //today_rem_datagrid.DataSource = null;
+            //upcoming_rem_datagrid.DataSource = null;
+            if (!get_reminders.IsBusy && check_connected())
+            {
+                loading_box.Visible = true;
+                get_reminders.RunWorkerAsync();
+            }
+        }
 
-		public static bool CheckForInternetConnection()
+        public static bool CheckForInternetConnection()
 		{
 			try
 			{
@@ -391,6 +391,7 @@ namespace HariOmImpex_LMS
         private void Form1_Load(object sender, EventArgs e)
         {
 
+			digi_time.Start();
 
 			
 			//new Login_form().ShowDialog();
@@ -766,24 +767,24 @@ namespace HariOmImpex_LMS
 
         private void contextMenuStrip2_Opening(object sender, CancelEventArgs e)
         {
-			if (today_rem_datagrid.Rows.Count > 0 && Settings.Default.oper_mode != 2)
-			{
-				contextMenuStrip2.Enabled = true;
-			}
-			else
-			{
-				contextMenuStrip2.Enabled = false;
-			}
+			//if (today_rem_datagrid.Rows.Count > 0 && Settings.Default.oper_mode != 2)
+			//{
+			//	contextMenuStrip2.Enabled = true;
+			//}
+			//else
+			//{
+			//	contextMenuStrip2.Enabled = false;
+			//}
 		}
 
         private void deleteSelectedToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-			delete_reminder(today_rem_datagrid);
+			//delete_reminder(today_rem_datagrid);
 		}
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-			delete_reminder(upcoming_rem_datagrid);
+			//delete_reminder(upcoming_rem_datagrid);
 		}
 
         private void active_remiders_Click(object sender, EventArgs e)
@@ -937,14 +938,14 @@ namespace HariOmImpex_LMS
 
         private void contextMenuStrip3_Opening(object sender, CancelEventArgs e)
         {
-			if (upcoming_rem_datagrid.Rows.Count > 0 && Settings.Default.oper_mode != 2)
-			{
-				contextMenuStrip3.Enabled = true;
-			}
-			else
-			{
-				contextMenuStrip3.Enabled = false;
-			}
+			//if (upcoming_rem_datagrid.Rows.Count > 0 && Settings.Default.oper_mode != 2)
+			//{
+			//	contextMenuStrip3.Enabled = true;
+			//}
+			//else
+			//{
+			//	contextMenuStrip3.Enabled = false;
+			//}
 		}
 
         private void client_basic_datagrid_ReadOnlyChanged(object sender, EventArgs e)
@@ -1221,6 +1222,41 @@ namespace HariOmImpex_LMS
         {
 			
         }
+
+        private void digi_time_Tick(object sender, EventArgs e)
+        {
+			digi_clock.Text = DateTime.Now.ToShortTimeString();
+        }
+
+        private void queryBuilderToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+		
+        }
+
+        private void queryBuilderToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+			
+		}
+
+        private void backupManagerToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+			backupManagerToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+		}
+
+        private void backupManagerToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+			backupManagerToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
+		}
+
+        private void settingsToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        {
+			settingsToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+		}
+
+        private void settingsToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+			settingsToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
+		}
     }
 
     public static class ExtensionMethods

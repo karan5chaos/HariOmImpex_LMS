@@ -200,7 +200,7 @@ namespace HariOmImpex_LMS.Forms
 
         private void addNewReminderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Add_reminder_form().ShowDialog();
+            new Add_reminder_form().ShowDialog(this);
             global_functions.Entry_log(0, "add_reminder_form opened", "");
         }
     }
