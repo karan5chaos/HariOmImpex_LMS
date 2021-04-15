@@ -208,7 +208,7 @@ namespace HariOmImpex_LMS
 
         private void backupManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-			new Backup_manager_form().ShowDialog();
+			new Backup_manager_form().ShowDialog(this);
 			global_functions.Entry_log(0, "Backup_manager opened", "");
 		}
 
@@ -390,8 +390,13 @@ namespace HariOmImpex_LMS
 
         private void Form1_Load(object sender, EventArgs e)
         {
+			splitContainer6.Panel1Collapsed = true;
 
-			digi_time.Start();
+            queryBuilderToolStripMenuItem.Text = "Query\nBuilder";
+            backupManagerToolStripMenuItem.Text = "Backup\nManager";
+            applicationLogToolStripMenuItem.Text = "Activity\nLog";
+
+            digi_time.Start();
 
 			
 			//new Login_form().ShowDialog();
@@ -440,14 +445,14 @@ namespace HariOmImpex_LMS
 				case 0:
 					edit_mode_button.Enabled = true;
 					backupManagerToolStripMenuItem.Enabled = true;
-					accessModeToolStripMenuItem.BackColor = Color.LightSteelBlue;
+					//accessModeToolStripMenuItem.BackColor = Color.LightSteelBlue;
 					text = "Access Mode: admin";
 					break;
 				case 1:
 					edit_mode_button.Enabled = true;
 					deleteSelectedToolStripMenuItem.Enabled = false;
 					backupManagerToolStripMenuItem.Enabled = false;
-					accessModeToolStripMenuItem.BackColor = Color.LimeGreen;
+					//accessModeToolStripMenuItem.BackColor = Color.LimeGreen;
 					queryBuilderToolStripMenuItem.Enabled = true;
 					text = "Access Mode: user";
 					break;
@@ -459,11 +464,11 @@ namespace HariOmImpex_LMS
 					contextMenuStrip1.Enabled = false;
 					backupManagerToolStripMenuItem.Enabled = false;
 					queryBuilderToolStripMenuItem.Enabled = false;
-					accessModeToolStripMenuItem.BackColor = Color.DarkGoldenrod;
+					//accessModeToolStripMenuItem.BackColor = Color.DarkGoldenrod;
 					text = "Access Mode: view";
 					break;
 			}
-			accessModeToolStripMenuItem.Text = text;
+			//accessModeToolStripMenuItem.Text = text;
 			global_functions.Entry_log(0, "set_access_mode - success", "");
 		}
 
@@ -624,12 +629,13 @@ namespace HariOmImpex_LMS
 
 				if (global_vars.reminders > 0)
 				{
-					active_remiders.Text = global_vars.reminders + " Reminder(s) active!";
+					//Transition.run(active_remiders, "BackColor", Color.Khaki, new TransitionType_Flash(999999, 99999));
+					
 					reminder_pane_visiblechanged();
 				}
 				else
 				{
-					active_remiders.Text = "Reminders";
+					//active_remiders.Text = "Reminders";
 				}
 
 				today_reminder.Dispose();
@@ -672,7 +678,10 @@ namespace HariOmImpex_LMS
 					audio.Stop();
 					audio.Play();
 					played = true;
-					Transition.run(panel6, "BackColor", Color.Khaki, new TransitionType_Flash(999999,99999));
+					Transition.run(panel6, "BackColor", Color.Khaki, new TransitionType_Flash(10,1000));
+
+					//Transition.run(active_remiders, "BackColor", Color.Khaki, new TransitionType_Flash(10, 1000));
+					active_remiders.Text = "Reminders\n(" + global_vars.reminders.ToString() +" active)";
 				}
 			}
 			else
@@ -689,6 +698,10 @@ namespace HariOmImpex_LMS
 			{
 				reminder_pane_visiblechanged();
 			}
+			//else
+			//{
+			//	load_reminders();
+			//}
 		}
 
         private void addNewToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -750,9 +763,9 @@ namespace HariOmImpex_LMS
         private void update_query_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
 
-			Loding_form loading = new Loding_form();
-			loading.CloseAfterDelay(2000);
-			loading.ShowDialog();
+				Loding_form loading = new Loding_form();
+				loading.CloseAfterDelay(2000);
+				loading.ShowDialog();
 
 			//commitChangesToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
 			//commitChangesToolStripMenuItem.Text = "Commit changes";
@@ -789,8 +802,7 @@ namespace HariOmImpex_LMS
 
         private void active_remiders_Click(object sender, EventArgs e)
         {
-			Reminder_window_form reminder_ = new Reminder_window_form();
-			reminder_.Show();
+			new Reminder_window_form().ShowDialog(this);
 			//if (main_splitcontainer.Panel2Collapsed)
 			//{
 			//	main_splitcontainer.Panel2Collapsed = false;
@@ -1084,7 +1096,13 @@ namespace HariOmImpex_LMS
 
         private void client_basic_datagrid_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-			
+			if (Settings.Default.save_mode == 0 && chnanged)
+			{
+				if (!update_query.IsBusy)
+				{
+					update_query.RunWorkerAsync();
+				}
+			}
 		}
 
         private void client_basic_datagrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1151,9 +1169,10 @@ namespace HariOmImpex_LMS
 
         private void label1_Click(object sender, EventArgs e)
         {
-			main_splitcontainer.Panel2Collapsed = false;
 			splitContainer5.Panel1Collapsed = true;
 			audio.Stop();
+			new Reminder_window_form().ShowDialog(this);
+			
 
 			global_functions.Entry_log(0, "reminder_popup clicked", "");
 		}
@@ -1228,35 +1247,45 @@ namespace HariOmImpex_LMS
 			digi_clock.Text = DateTime.Now.ToShortTimeString();
         }
 
-        private void queryBuilderToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+
+        private void splitContainer6_Panel1_Paint(object sender, PaintEventArgs e)
         {
-		
+
         }
 
-        private void queryBuilderToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        private void splitContainer6_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void splitContainer6_Panel1_MouseEnter(object sender, EventArgs e)
         {
 			
 		}
 
-        private void backupManagerToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
-			backupManagerToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
+			
+        }
+
+        private void openSidebarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			if (splitContainer6.Panel1Collapsed == false)
+			{
+				splitContainer6.Panel1Collapsed = true;
+			}
+			else
+			{
+				splitContainer6.Panel1Collapsed = false;
+			}
+			
 		}
 
-        private void backupManagerToolStripMenuItem_MouseLeave(object sender, EventArgs e)
-        {
-			backupManagerToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
-		}
 
-        private void settingsToolStripMenuItem_MouseEnter(object sender, EventArgs e)
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-			settingsToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.ImageAndText;
-		}
 
-        private void settingsToolStripMenuItem_MouseLeave(object sender, EventArgs e)
-        {
-			settingsToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
-		}
+        }
     }
 
     public static class ExtensionMethods

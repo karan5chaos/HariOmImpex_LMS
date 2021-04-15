@@ -31,12 +31,12 @@ namespace HariOmImpex_LMS.Forms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Log_console_form));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.exportLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.time = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.error_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.error_message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stack_trace = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.exportLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -53,6 +53,14 @@ namespace HariOmImpex_LMS.Forms
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // exportLogToolStripMenuItem
+            // 
+            this.exportLogToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.bug_go;
+            this.exportLogToolStripMenuItem.Name = "exportLogToolStripMenuItem";
+            this.exportLogToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.exportLogToolStripMenuItem.Text = "Export log";
+            this.exportLogToolStripMenuItem.Click += new System.EventHandler(this.exportLogToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -100,14 +108,6 @@ namespace HariOmImpex_LMS.Forms
             this.stack_trace.Name = "stack_trace";
             this.stack_trace.ReadOnly = true;
             // 
-            // exportLogToolStripMenuItem
-            // 
-            this.exportLogToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.bug_go;
-            this.exportLogToolStripMenuItem.Name = "exportLogToolStripMenuItem";
-            this.exportLogToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
-            this.exportLogToolStripMenuItem.Text = "Export log";
-            this.exportLogToolStripMenuItem.Click += new System.EventHandler(this.exportLogToolStripMenuItem_Click);
-            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "csv";
@@ -126,6 +126,7 @@ namespace HariOmImpex_LMS.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Log_console_form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Application log";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Log_console_form_FormClosing);
             this.Load += new System.EventHandler(this.Log_console_form_Load);

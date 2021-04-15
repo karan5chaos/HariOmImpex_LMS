@@ -160,12 +160,12 @@ namespace HariOmImpex_LMS.Forms
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            delete_reminder(today_rem_datagrid);
+            delete_reminder(upcoming_rem_datagrid);
         }
 
         private void deleteSelectedToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            delete_reminder(upcoming_rem_datagrid);
+            delete_reminder(today_rem_datagrid);
         }
 
         private void delete_reminder(DataGridView grid)

@@ -213,6 +213,7 @@ namespace HariOmImpex_LMS.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Backup_manager_form";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Backup Manager";
             this.Load += new System.EventHandler(this.Backup_manager_form_Load);
             this.menuStrip1.ResumeLayout(false);
