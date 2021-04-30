@@ -203,6 +203,12 @@
     <Compile Include="Forms\Changelogs_form.Designer.cs">
       <DependentUpon>Changelogs_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Console_login_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Console_login_form.Designer.cs">
+      <DependentUpon>Console_login_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Loding_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Changelogs_form.resx">
       <DependentUpon>Changelogs_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Console_login_form.resx">
+      <DependentUpon>Console_login_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Loding_form.resx">
       <DependentUpon>Loding_form.cs</DependentUpon>

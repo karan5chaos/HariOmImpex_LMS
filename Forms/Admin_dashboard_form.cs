@@ -25,5 +25,10 @@ namespace HariOmImpex_LMS.Forms
         {
 
         }
+
+        private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Add_new_user_form().ShowDialog();
+        }
     }
 }
