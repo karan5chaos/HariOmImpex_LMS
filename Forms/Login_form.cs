@@ -19,17 +19,17 @@ namespace HariOmImpex_LMS.Forms
         {
             InitializeComponent();
 
-            control_list = new List<Control>();
-            foreach (Control control in base.Controls)
-            {
-                control_list.Add(control);
-            }
-            control_list.Add(groupBox1);
-            if (Settings.Default.ui_size == 1)
-            {
-                global_functions.ui_size_1(control_list);
-                global_functions.Entry_log(0, "UI_size set to 1","");
-            }
+            //control_list = new List<Control>();
+            //foreach (Control control in base.Controls)
+            //{
+            //    control_list.Add(control);
+            //}
+            //control_list.Add(groupBox1);
+            //if (Settings.Default.ui_size == 1)
+            //{
+            //    global_functions.ui_size_1(control_list);
+            //    global_functions.Entry_log(0, "UI_size set to 1","");
+            //}
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -43,27 +43,14 @@ namespace HariOmImpex_LMS.Forms
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string caption = "";
-            if (comboBox1.Text == "admin")
-            {
-                caption = "'admin' mode allows unrestricted access to all features and fuctionality of this program.\nOnly admins can remove existing entries.";
-            }
-            else if (comboBox1.Text == "user")
-            {
-                caption = "'user' mode allows access to limited funtionalities.\nusers can add or modify existing entries but cannot delete them.";
-            }
-            else if (comboBox1.Text == "view")
-            {
-                caption = "'view' mode only allows you to view data. Majority of the program features are disabled.";
-            }
-            toolTip1.SetToolTip(comboBox1, caption);
+           
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Settings.Default.oper_mode = 2;
-            Close();
-            global_functions.Entry_log(0, "Skip button clicked. oper_mode set to 2.","");
+
+            new Console_login_form().ShowDialog();
+            global_functions.Entry_log(0, "admin_console_button clicked.","");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -76,23 +63,16 @@ namespace HariOmImpex_LMS.Forms
 
             if (textBox1.Text == passwrd)
             {
+                access_check = true;
                 check_access(comboBox1.Text);
                 Close();
 
             }
             else
             {
-                MessageBox.Show("incorrect password");
-            
+                toolStripStatusLabel1.Text = "Incorrect password.. Please try again.";
             }
                
-
-            //foreach (DataRow user in users.Tables[0].Rows)
-            //{
-            //    comboBox1.Items.Add(user.Field<string>("user_name"));
-
-            //}
-
 
         }
 
@@ -130,7 +110,6 @@ namespace HariOmImpex_LMS.Forms
             var users = global_functions.load_SQLiteData("select * from users_data where user_name = '" + user + "';");
 
             Access_points_vars.af_bm = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_bm"));
-
             Access_points_vars.af_al = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_al"));
             Access_points_vars.af_set = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_set"));
             Access_points_vars.af_ad = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_ad"));
@@ -149,21 +128,47 @@ namespace HariOmImpex_LMS.Forms
 
             if (!access_check)
             {
-                Settings.Default.oper_mode = 2;
+
+                Access_points_vars.af_bm = false;
+                Access_points_vars.af_al = false;
+                Access_points_vars.af_set = false;
+                Access_points_vars.af_ad = false;
+                Access_points_vars.af_qb = false;
+                Access_points_vars.do_anc = false;
+                Access_points_vars.do_dce = false;
+                Access_points_vars.do_dr = false;
+                Access_points_vars.do_ecd = false;
+                Access_points_vars.do_mce = false;
+
+                //Settings.Default.oper_mode = 2;
                 global_functions.Entry_log(0, "form_closed. oper_mode set to 2", "");
 
             }
+
+            //Application.Exit();
         }
 
         private void Login_form_Load(object sender, EventArgs e)
         {
+            load_users();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            load_users();
+        }
+
+        void load_users()
+        {
+            comboBox1.Items.Clear();
             var users = global_functions.load_SQLiteData("select user_name from users_data;");
 
             foreach (DataRow user in users.Tables[0].Rows)
             {
                 comboBox1.Items.Add(user.Field<string>("user_name"));
-            
+
             }
+
         }
     }
 }

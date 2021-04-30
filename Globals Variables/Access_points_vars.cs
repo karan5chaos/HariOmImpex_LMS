@@ -73,5 +73,11 @@ namespace HariOmImpex_LMS.Globals_Variables
             set;
         }
 
+        public static bool c_login
+        {
+            get;
+            set;
+        }
+
     }
 }

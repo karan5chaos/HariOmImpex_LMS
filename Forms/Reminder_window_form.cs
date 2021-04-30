@@ -143,7 +143,7 @@ namespace HariOmImpex_LMS.Forms
 
         private void contextMenuStrip2_Opening(object sender, CancelEventArgs e)
         {
-            if (today_rem_datagrid.Rows.Count > 0 && Settings.Default.oper_mode != 2)
+            if (today_rem_datagrid.Rows.Count > 0 && Access_points_vars.do_dr)
             {
                 contextMenuStrip2.Enabled = true;
             }
@@ -155,7 +155,7 @@ namespace HariOmImpex_LMS.Forms
 
         private void contextMenuStrip3_Opening(object sender, CancelEventArgs e)
         {
-            if (upcoming_rem_datagrid.Rows.Count > 0 && Settings.Default.oper_mode != 2)
+            if (upcoming_rem_datagrid.Rows.Count > 0 && Access_points_vars.do_dr)
             {
                 contextMenuStrip3.Enabled = true;
             }

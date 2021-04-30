@@ -1307,7 +1307,7 @@ namespace HariOmImpex_LMS
 
         private void login_console_Click(object sender, EventArgs e)
         {
-			new Add_new_user_form().ShowDialog();
+			new Console_login_form().ShowDialog();
         }
     }
 

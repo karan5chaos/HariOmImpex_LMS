@@ -73,6 +73,19 @@ namespace HariOmImpex_LMS.Forms
 			
 		}
 
-      
+        private void button2_Click(object sender, EventArgs e)
+        {
+			foreach (CheckBox box in groupBox3.Controls)
+			{
+				box.Checked = false;
+			}
+
+			foreach (TextBox box in groupBox1.Controls)
+			{
+				box.Clear();
+			}
+
+
+		}
     }
 }
