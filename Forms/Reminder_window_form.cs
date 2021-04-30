@@ -1,4 +1,5 @@
-﻿using HariOmImpex_LMS.Properties;
+﻿using HariOmImpex_LMS.Globals_Variables;
+using HariOmImpex_LMS.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,6 +53,12 @@ namespace HariOmImpex_LMS.Forms
         private void Reminder_window_form_Load(object sender, EventArgs e)
         {
             load_reminders();
+
+
+            contextMenuStrip2.Enabled = Access_points_vars.do_dr;
+            contextMenuStrip3.Enabled = Access_points_vars.do_dr;
+
+            addNewReminderToolStripMenuItem.Enabled = Access_points_vars.do_anr;
         }
 
         private void Reminder_window_form_VisibleChanged(object sender, EventArgs e)

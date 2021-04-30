@@ -103,6 +103,7 @@ namespace HariOmImpex_LMS
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.active_remiders = new System.Windows.Forms.ToolStripMenuItem();
+            this.login_console = new System.Windows.Forms.ToolStripMenuItem();
             this.queryBuilderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applicationLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -910,6 +911,7 @@ namespace HariOmImpex_LMS
             this.menuStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.active_remiders,
+            this.login_console,
             this.queryBuilderToolStripMenuItem,
             this.backupManagerToolStripMenuItem,
             this.applicationLogToolStripMenuItem,
@@ -940,6 +942,22 @@ namespace HariOmImpex_LMS
             this.active_remiders.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.active_remiders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.active_remiders.Click += new System.EventHandler(this.active_remiders_Click);
+            // 
+            // login_console
+            // 
+            this.login_console.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.login_console.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.login_console.Image = ((System.Drawing.Image)(resources.GetObject("login_console.Image")));
+            this.login_console.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.login_console.Margin = new System.Windows.Forms.Padding(0, 3, 4, 3);
+            this.login_console.Name = "login_console";
+            this.login_console.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.login_console.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.login_console.Size = new System.Drawing.Size(73, 59);
+            this.login_console.Text = "-";
+            this.login_console.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.login_console.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.login_console.Click += new System.EventHandler(this.login_console_Click);
             // 
             // queryBuilderToolStripMenuItem
             // 
@@ -1016,6 +1034,7 @@ namespace HariOmImpex_LMS
             this.uISizeToolStripMenuItem.Text = "UI size";
             this.uISizeToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.uISizeToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.uISizeToolStripMenuItem.Visible = false;
             // 
             // defaultToolStripMenuItem
             // 
@@ -1060,7 +1079,7 @@ namespace HariOmImpex_LMS
             this.connectivityCheckToolStripMenuItem.Enabled = false;
             this.connectivityCheckToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("connectivityCheckToolStripMenuItem.Image")));
             this.connectivityCheckToolStripMenuItem.Name = "connectivityCheckToolStripMenuItem";
-            this.connectivityCheckToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectivityCheckToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.connectivityCheckToolStripMenuItem.Text = "Connectivity check";
             this.connectivityCheckToolStripMenuItem.Visible = false;
             // 
@@ -1068,7 +1087,7 @@ namespace HariOmImpex_LMS
             // 
             this.aboutApplicationToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutApplicationToolStripMenuItem.Image")));
             this.aboutApplicationToolStripMenuItem.Name = "aboutApplicationToolStripMenuItem";
-            this.aboutApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutApplicationToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.aboutApplicationToolStripMenuItem.Text = "About Application";
             this.aboutApplicationToolStripMenuItem.Click += new System.EventHandler(this.aboutApplicationToolStripMenuItem_Click);
             // 
@@ -1076,7 +1095,7 @@ namespace HariOmImpex_LMS
             // 
             this.shortcutsListToolStripMenuItem.Image = global::HariOmImpex_LMS.Properties.Resources.shortcuts;
             this.shortcutsListToolStripMenuItem.Name = "shortcutsListToolStripMenuItem";
-            this.shortcutsListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shortcutsListToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.shortcutsListToolStripMenuItem.Text = "Shortcuts list";
             this.shortcutsListToolStripMenuItem.Click += new System.EventHandler(this.shortcutsListToolStripMenuItem_Click);
             // 
@@ -1084,7 +1103,7 @@ namespace HariOmImpex_LMS
             // 
             this.changelogsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changelogsToolStripMenuItem.Image")));
             this.changelogsToolStripMenuItem.Name = "changelogsToolStripMenuItem";
-            this.changelogsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changelogsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.changelogsToolStripMenuItem.Text = "Changelogs";
             this.changelogsToolStripMenuItem.Visible = false;
             this.changelogsToolStripMenuItem.Click += new System.EventHandler(this.changelogsToolStripMenuItem_Click);
@@ -1417,6 +1436,7 @@ namespace HariOmImpex_LMS
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ToolStripMenuItem openSidebarToolStripMenuItem;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.ToolStripMenuItem login_console;
     }
 }
 

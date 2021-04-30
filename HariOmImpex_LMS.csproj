@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Costura.Fody.5.2.0\build\Costura.Fody.props" Condition="Exists('packages\Costura.Fody.5.2.0\build\Costura.Fody.props')" />
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -172,11 +173,23 @@
     <Compile Include="Forms\Add_new_client_form.Designer.cs">
       <DependentUpon>Add_new_client_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Add_new_user_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Add_new_user_form.Designer.cs">
+      <DependentUpon>Add_new_user_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Add_reminder_form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Add_reminder_form.Designer.cs">
       <DependentUpon>Add_reminder_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Admin_dashboard_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Admin_dashboard_form.Designer.cs">
+      <DependentUpon>Admin_dashboard_form.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Backup_manager_form.cs">
       <SubType>Form</SubType>
@@ -238,6 +251,7 @@
     <Compile Include="Forms\Shortcuts_form.Designer.cs">
       <DependentUpon>Shortcuts_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Globals Variables\Access_points_vars.cs" />
     <Compile Include="Globals Variables\global_functions.cs" />
     <Compile Include="Globals Variables\global_vars.cs" />
     <Compile Include="Globals Variables\animator.cs" />
@@ -249,8 +263,14 @@
     <EmbeddedResource Include="Forms\Add_new_client_form.resx">
       <DependentUpon>Add_new_client_form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Add_new_user_form.resx">
+      <DependentUpon>Add_new_user_form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Add_reminder_form.resx">
       <DependentUpon>Add_reminder_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Admin_dashboard_form.resx">
+      <DependentUpon>Admin_dashboard_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Backup_manager_form.resx">
       <DependentUpon>Backup_manager_form.cs</DependentUpon>
@@ -384,8 +404,11 @@
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('packages\Costura.Fody.5.2.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.5.2.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('packages\Costura.Fody.5.2.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.5.2.0\build\Costura.Fody.targets'))" />
   </Target>
   <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net40\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net40\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="packages\Costura.Fody.5.2.0\build\Costura.Fody.targets" Condition="Exists('packages\Costura.Fody.5.2.0\build\Costura.Fody.targets')" />
 </Project>

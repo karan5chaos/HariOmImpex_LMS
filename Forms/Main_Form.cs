@@ -237,7 +237,7 @@ namespace HariOmImpex_LMS
 					client_basic_datagrid.ReadOnly = true;
 					edit_mode_button.Text = "Edit mode (Off)";
 					edit_mode_button.BackColor = Color.IndianRed;
-					add_user_btn.Enabled = false;
+				//	add_user_btn.Enabled = false;
 					global_functions.Entry_log(0, "edit_mode = false", "");
 				}
 				else
@@ -245,7 +245,7 @@ namespace HariOmImpex_LMS
 					client_basic_datagrid.ReadOnly = false;
 					edit_mode_button.Text = "Edit mode (On)";
 					edit_mode_button.BackColor = Color.GreenYellow;
-					add_user_btn.Enabled = true;
+				//	add_user_btn.Enabled = true;
 					global_functions.Entry_log(0, "edit_mode = true", "");
 				}
 			}
@@ -395,12 +395,13 @@ namespace HariOmImpex_LMS
             queryBuilderToolStripMenuItem.Text = "Query\nBuilder";
             backupManagerToolStripMenuItem.Text = "Backup\nManager";
             applicationLogToolStripMenuItem.Text = "Activity\nLog";
+			login_console.Text = "Admin\nConsole";
 
             digi_time.Start();
 
 			
-			//new Login_form().ShowDialog();
-			//set_access_mode();
+			new Login_form().ShowDialog();
+			set_access_mode();
 			if (!File.Exists(global_vars.getDatabasePath()))
 			{
 				new Settings_form().ShowDialog();
@@ -439,35 +440,48 @@ namespace HariOmImpex_LMS
 
 		private void set_access_mode()
 		{
-			string text = "";
-			switch (Settings.Default.oper_mode)
-			{
-				case 0:
-					edit_mode_button.Enabled = true;
-					backupManagerToolStripMenuItem.Enabled = true;
-					//accessModeToolStripMenuItem.BackColor = Color.LightSteelBlue;
-					text = "Access Mode: admin";
-					break;
-				case 1:
-					edit_mode_button.Enabled = true;
-					deleteSelectedToolStripMenuItem.Enabled = false;
-					backupManagerToolStripMenuItem.Enabled = false;
-					//accessModeToolStripMenuItem.BackColor = Color.LimeGreen;
-					queryBuilderToolStripMenuItem.Enabled = true;
-					text = "Access Mode: user";
-					break;
-				case 2:
-					edit_mode_button.Enabled = false;
-					settingsToolStripMenuItem.Enabled = false;
-					contextMenuStrip2.Enabled = false;
-					contextMenuStrip2.Enabled = false;
-					contextMenuStrip1.Enabled = false;
-					backupManagerToolStripMenuItem.Enabled = false;
-					queryBuilderToolStripMenuItem.Enabled = false;
-					//accessModeToolStripMenuItem.BackColor = Color.DarkGoldenrod;
-					text = "Access Mode: view";
-					break;
-			}
+
+			backupManagerToolStripMenuItem.Enabled = Access_points_vars.af_bm;
+			deleteSelectedToolStripMenuItem.Enabled = Access_points_vars.do_dce;
+			settingsToolStripMenuItem.Enabled = Access_points_vars.af_set;
+			applicationLogToolStripMenuItem.Enabled = Access_points_vars.af_al;
+			queryBuilderToolStripMenuItem.Enabled = Access_points_vars.af_qb;
+			login_console.Enabled = Access_points_vars.af_ad;
+			exportCurrentViewToolStripMenuItem.Enabled = Access_points_vars.do_ecd;
+			add_user_btn.Enabled = Access_points_vars.do_anc;
+			edit_mode_button.Enabled = Access_points_vars.do_mce;
+
+
+
+			//string text = "";
+			//switch (Settings.Default.oper_mode)
+			//{
+			//	case 0:
+			//		edit_mode_button.Enabled = true;
+			//		backupManagerToolStripMenuItem.Enabled = true;
+			//		//accessModeToolStripMenuItem.BackColor = Color.LightSteelBlue;
+			//		text = "Access Mode: admin";
+			//		break;
+			//	case 1:
+			//		edit_mode_button.Enabled = true;
+			//		deleteSelectedToolStripMenuItem.Enabled = false;
+			//		backupManagerToolStripMenuItem.Enabled = false;
+			//		//accessModeToolStripMenuItem.BackColor = Color.LimeGreen;
+			//		queryBuilderToolStripMenuItem.Enabled = true;
+			//		text = "Access Mode: user";
+			//		break;
+			//	case 2:
+			//		edit_mode_button.Enabled = false;
+			//		settingsToolStripMenuItem.Enabled = false;
+			//		contextMenuStrip2.Enabled = false;
+			//		contextMenuStrip2.Enabled = false;
+			//		contextMenuStrip1.Enabled = false;
+			//		backupManagerToolStripMenuItem.Enabled = false;
+			//		queryBuilderToolStripMenuItem.Enabled = false;
+			//		//accessModeToolStripMenuItem.BackColor = Color.DarkGoldenrod;
+			//		text = "Access Mode: view";
+			//		break;
+			//}
 			//accessModeToolStripMenuItem.Text = text;
 			global_functions.Entry_log(0, "set_access_mode - success", "");
 		}
@@ -1038,7 +1052,11 @@ namespace HariOmImpex_LMS
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
-			iDToolStripMenuItem.Text = "ID: " + client_basic_datagrid.SelectedRows[0].Cells[0].Value.ToString();
+			if (client_basic_datagrid.Rows.Count > 0)
+			{
+				iDToolStripMenuItem.Text = "ID: " + client_basic_datagrid.SelectedRows[0].Cells[0].Value.ToString();
+			}
+			
 		}
 
         private void client_basic_datagrid_CellValidated(object sender, DataGridViewCellEventArgs e)
@@ -1285,6 +1303,11 @@ namespace HariOmImpex_LMS
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void login_console_Click(object sender, EventArgs e)
+        {
+			new Add_new_user_form().ShowDialog();
         }
     }
 
