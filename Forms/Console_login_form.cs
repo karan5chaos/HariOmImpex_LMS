@@ -25,7 +25,6 @@ namespace HariOmImpex_LMS.Forms
                 if (textBox1.Text == "admin" && textBox2.Text == "admin@12345")
                 {
                     new Admin_dashboard_form().ShowDialog();
-                    //Access_points_vars.c_login = true;
                     Close();
                 
                 }
@@ -36,7 +35,7 @@ namespace HariOmImpex_LMS.Forms
 
         private void Console_login_form_Load(object sender, EventArgs e)
         {
-
+            global_functions.Entry_log(0, "console_login_form - opened", "");
         }
     }
 }

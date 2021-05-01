@@ -13,7 +13,7 @@ namespace HariOmImpex_LMS.Forms
 {
     public partial class Login_form : Form
     {
-        private List<Control> control_list;
+       // private List<Control> control_list;
 
         public Login_form()
         {
@@ -37,7 +37,7 @@ namespace HariOmImpex_LMS.Forms
             if (e.KeyCode == Keys.Return)
             {
                 global_functions.Entry_log(0, "textbox_keydown - check_access","");
-                check_access(comboBox1.Text);
+                button1_Click(null, null);
             }
         }
 
@@ -48,15 +48,13 @@ namespace HariOmImpex_LMS.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             new Console_login_form().ShowDialog();
             global_functions.Entry_log(0, "admin_console_button clicked.","");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //global_functions.Entry_log(0, "login_button_clicked - check_access","");
-            //check_access();
+            global_functions.Entry_log(0, "login_button_clicked - check_access","");
 
             var users = global_functions.load_SQLiteData("select password from users_data where user_name = '"+ comboBox1.Text +"';");
             string passwrd = users.Tables[0].Rows[0].Field<string>("password");
@@ -72,59 +70,45 @@ namespace HariOmImpex_LMS.Forms
             {
                 toolStripStatusLabel1.Text = "Incorrect password.. Please try again.";
             }
-               
-
         }
 
         bool access_check = false;
         private void check_access(string user)
         {
-            //if (comboBox1.Text == "admin" && textBox1.Text == "admin_0000")
-            //{
-            //    Settings.Default.oper_mode = 0;
-            //    global_functions.Entry_log(0, "check_access mode 0 - admin","");
-            //    access_check = true;
-            //    Close();
-            //}
-            //else if (comboBox1.Text == "user" && textBox1.Text == "impex123")
-            //{
-            //    Settings.Default.oper_mode = 1;
-            //    global_functions.Entry_log(0, "check_access mode 1 - user","");
-            //    access_check = true;
-            //    Close();
-            //}
-            //else if (comboBox1.Text == "view")
-            //{
-            //    Settings.Default.oper_mode = 2;
-            //    global_functions.Entry_log(0, "check_access mode 2 - view","");
-            //    access_check = true;
-            //    Close();
-            //}
-            //else
-            //{
-            //    toolStripStatusLabel1.Text = "Verification failed.. Please try again.";
-            //    global_functions.Entry_log(0, "check_access verification failed.","");
-            //}
 
+            global_functions.Entry_log(0, "check_access_initiated", "");
 
-            var users = global_functions.load_SQLiteData("select * from users_data where user_name = '" + user + "';");
+            try
+            {
+                var users = global_functions.load_SQLiteData("select * from users_data where user_name = '" + user + "';");
 
-            Access_points_vars.af_bm = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_bm"));
-            Access_points_vars.af_al = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_al"));
-            Access_points_vars.af_set = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_set"));
-            Access_points_vars.af_ad = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_ad"));
-            Access_points_vars.af_qb = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_qb"));
-            Access_points_vars.do_anc = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_anc"));
-            Access_points_vars.do_dce = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_dce"));
-            Access_points_vars.do_dr = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_dr"));
-            Access_points_vars.do_ecd = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_ecd"));
-            Access_points_vars.do_mce = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_mce"));
+                Access_points_vars.af_bm = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_bm"));
+                Access_points_vars.af_al = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_al"));
+                Access_points_vars.af_set = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_set"));
+                Access_points_vars.af_ad = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_ad"));
+                Access_points_vars.af_qb = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("af_qb"));
+                Access_points_vars.do_anc = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_anc"));
+                Access_points_vars.do_dce = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_dce"));
+                Access_points_vars.do_dr = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_dr"));
+                Access_points_vars.do_ecd = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_ecd"));
+                Access_points_vars.do_mce = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_mce"));
 
+                global_functions.Entry_log(0, "check_access - success", "");
+            }
+            catch (Exception ex)
+            {
+                global_functions.Entry_log(1, "check_access_initiated "+ ex.Message, ex.StackTrace);
+                toolStripStatusLabel1.Text = "Error occurred while setting access points..";
+
+            }
+            finally
+            {
+                global_functions.Entry_log(0, "check_access_terminated", "");
+            }
         }
 
         private void Login_form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //e.Cancel = true;
 
             if (!access_check)
             {
@@ -140,12 +124,9 @@ namespace HariOmImpex_LMS.Forms
                 Access_points_vars.do_ecd = false;
                 Access_points_vars.do_mce = false;
 
-                //Settings.Default.oper_mode = 2;
-                global_functions.Entry_log(0, "form_closed. oper_mode set to 2", "");
+                global_functions.Entry_log(0, "login_form_closed. Access_points_vars set.", "");
 
             }
-
-            //Application.Exit();
         }
 
         private void Login_form_Load(object sender, EventArgs e)
@@ -160,13 +141,28 @@ namespace HariOmImpex_LMS.Forms
 
         void load_users()
         {
-            comboBox1.Items.Clear();
-            var users = global_functions.load_SQLiteData("select user_name from users_data;");
 
-            foreach (DataRow user in users.Tables[0].Rows)
+            try
             {
-                comboBox1.Items.Add(user.Field<string>("user_name"));
+                comboBox1.Items.Clear();
+                var users = global_functions.load_SQLiteData("select user_name from users_data;");
 
+                foreach (DataRow user in users.Tables[0].Rows)
+                {
+                    comboBox1.Items.Add(user.Field<string>("user_name"));
+                }
+
+                global_functions.Entry_log(0, "load_users - success", "");
+
+            }
+            catch(Exception ex)
+            {
+                global_functions.Entry_log(1, "load_users - " + ex.Message, ex.StackTrace);
+                toolStripStatusLabel1.Text = "Error occurred while fetching users..";
+            }
+            finally
+            {
+                global_functions.Entry_log(0, "load_users_terminated", "");
             }
 
         }

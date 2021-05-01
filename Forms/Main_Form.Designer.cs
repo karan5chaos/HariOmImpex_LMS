@@ -729,6 +729,7 @@ namespace HariOmImpex_LMS
             this.listBox1.Size = new System.Drawing.Size(20, 0);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown);
             // 
             // statusStrip2
             // 
@@ -909,6 +910,7 @@ namespace HariOmImpex_LMS
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip1.Font = new System.Drawing.Font("Calibri", 8.25F);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.active_remiders,
             this.login_console,
@@ -1115,7 +1117,7 @@ namespace HariOmImpex_LMS
             this.openSidebarToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 3, 4, 3);
             this.openSidebarToolStripMenuItem.Name = "openSidebarToolStripMenuItem";
             this.openSidebarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Space)));
-            this.openSidebarToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.openSidebarToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.openSidebarToolStripMenuItem.Text = "Hide";
             this.openSidebarToolStripMenuItem.Click += new System.EventHandler(this.openSidebarToolStripMenuItem_Click);
             // 

@@ -72,8 +72,6 @@ namespace HariOmImpex_LMS
 
 			string notif_name = "notif_sound_" + Properties.Settings.Default.selected_notif_sound.ToString();
 
-			
-
             switch (Properties.Settings.Default.selected_notif_sound)
             {
                 case 0:
@@ -134,8 +132,6 @@ namespace HariOmImpex_LMS
 				{
 					commit_button.Enabled = true;
 				}
-
-            //throw new NotImplementedException();
         }
 
         private void get_column_names()
@@ -173,8 +169,14 @@ namespace HariOmImpex_LMS
 			if (!splitContainer3.Panel2Collapsed)
 			{
 				splitContainer3.Panel2Collapsed = true;
-				edit_mode_button.Enabled = true;
 				reloadDatabaseToolStripMenuItem.Enabled = true;
+
+				if(Access_points_vars.do_mce)
+                {
+					edit_mode_button.Enabled = true;
+					client_basic_datagrid.ReadOnly = false;
+				}
+				
 
 				global_functions.Entry_log(0, "query_builder panel collapsed = true", "");
 			}
@@ -187,6 +189,8 @@ namespace HariOmImpex_LMS
 				splitContainer3.Panel2Collapsed = false;
 				edit_mode_button.Enabled = false;
 				reloadDatabaseToolStripMenuItem.Enabled = false;
+				client_basic_datagrid.ReadOnly = true;
+				load_queries();
 				global_functions.Entry_log(0, "query_builder panel collapsed = false", "");
 			}
 		}
@@ -399,13 +403,14 @@ namespace HariOmImpex_LMS
 
             digi_time.Start();
 
-			
-			new Login_form().ShowDialog();
-			set_access_mode();
 			if (!File.Exists(global_vars.getDatabasePath()))
 			{
 				new Settings_form().ShowDialog();
 			}
+
+			new Login_form().ShowDialog();
+			set_access_mode();
+			
 			shortcuts_List = new Shortcuts_form();
 			if (Settings.Default.backup_time == 1 && Settings.Default.oper_mode == 0)
 			{
@@ -1309,6 +1314,33 @@ namespace HariOmImpex_LMS
         {
 			new Console_login_form().ShowDialog();
         }
+
+        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+			string querypath = Path.GetDirectoryName(global_vars.getDatabasePath()) + "/queries";
+
+			try
+			{
+				if (e.KeyCode == Keys.Delete)
+				{
+					if (MessageBox.Show("Delete selected query?\nThis action cannot be undone.", "Delete confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+					{
+						File.Delete(querypath + "/" + listBox1.SelectedItem.ToString());
+
+						sts_txt.Text = "Query file deleted..";
+						load_queries();
+					}
+
+
+
+				}
+			}
+			catch
+			{
+				sts_txt.Text = "Error occurred.. Selected query not deleted..";
+			}
+
+		}
     }
 
     public static class ExtensionMethods
