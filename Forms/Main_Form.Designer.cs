@@ -44,6 +44,7 @@ namespace HariOmImpex_LMS
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.add_user_btn = new System.Windows.Forms.ToolStripMenuItem();
             this.reloadDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loading_box = new System.Windows.Forms.ToolStripMenuItem();
@@ -287,6 +288,7 @@ namespace HariOmImpex_LMS
             this.menuStrip2.Font = new System.Drawing.Font("Calibri", 8.25F);
             this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.optionsToolStripMenuItem,
             this.add_user_btn,
             this.reloadDatabaseToolStripMenuItem,
             this.loading_box,
@@ -298,6 +300,14 @@ namespace HariOmImpex_LMS
             this.menuStrip2.Size = new System.Drawing.Size(922, 27);
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("optionsToolStripMenuItem.Image")));
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(75, 23);
+            this.optionsToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // add_user_btn
             // 
@@ -954,7 +964,6 @@ namespace HariOmImpex_LMS
             this.login_console.Margin = new System.Windows.Forms.Padding(0, 3, 4, 3);
             this.login_console.Name = "login_console";
             this.login_console.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.login_console.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.login_console.Size = new System.Drawing.Size(73, 59);
             this.login_console.Text = "-";
             this.login_console.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -1231,6 +1240,7 @@ namespace HariOmImpex_LMS
             this.splitContainer6.SplitterDistance = 86;
             this.splitContainer6.TabIndex = 10;
             this.splitContainer6.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer6_SplitterMoved);
+            this.splitContainer6.VisibleChanged += new System.EventHandler(this.splitContainer6_VisibleChanged);
             // 
             // panel2
             // 
@@ -1439,6 +1449,7 @@ namespace HariOmImpex_LMS
         private System.Windows.Forms.ToolStripMenuItem openSidebarToolStripMenuItem;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ToolStripMenuItem login_console;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
     }
 }
 

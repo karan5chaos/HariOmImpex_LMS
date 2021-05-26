@@ -153,6 +153,15 @@
     <value>395, 56</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="optionsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC+SURBVDhPpZFLCsJAEERzGG+Quw0k5DNXEXEloogb
+        FwaTC4judYK6Mvi5QTkdnLhILRxteJtHdcH0BAD+gkofqPSBSh+oFLTWzzzPbeIzLEelkGUZjKkRx3FX
+        wnJUCmmaYjga43S+IIqitoTlqBSkYL5YYjKd4XZ/IEkSq/u5nnDIQlFWWK0LXJvmt4Ltbo/D0bgnhCzX
+        Ew454qaq3BFD7xsopcr3N7bLMixHpWBnYOmWZWiOSR+o9IHK70HwAjPPxwlQJxjGAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="reloadDatabaseToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAvxJREFUOE+N

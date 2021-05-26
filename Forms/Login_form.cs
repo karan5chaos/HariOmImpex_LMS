@@ -92,6 +92,7 @@ namespace HariOmImpex_LMS.Forms
                 Access_points_vars.do_dr = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_dr"));
                 Access_points_vars.do_ecd = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_ecd"));
                 Access_points_vars.do_mce = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_mce"));
+                Access_points_vars.do_anr = Convert.ToBoolean(users.Tables[0].Rows[0].Field<Int64>("do_anr"));
 
                 global_functions.Entry_log(0, "check_access - success", "");
             }
@@ -165,6 +166,11 @@ namespace HariOmImpex_LMS.Forms
                 global_functions.Entry_log(0, "load_users_terminated", "");
             }
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new Settings_form().ShowDialog();
         }
     }
 }

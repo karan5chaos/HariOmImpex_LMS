@@ -364,6 +364,7 @@ namespace HariOmImpex_LMS
 					loading_box.Visible = true;
 					if (File.Exists(global_vars.getDatabasePath()))
 					{
+						client_basic_datagrid.DataSource = null;
 						fileSystemWatcher1.Path = Path.GetDirectoryName(global_vars.getDatabasePath());
 						fileSystemWatcher1.NotifyFilter = NotifyFilters.LastWrite;
 						fileSystemWatcher1.EnableRaisingEvents = true;
@@ -601,7 +602,8 @@ namespace HariOmImpex_LMS
 			client_basic_datagrid.DataSource = bindingSource1;
 			//client_basic_datagrid.Columns[0].Visible = false;
 			//client_basic_datagrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-			OrderColumns();
+			//
+			//OrderColumns();
 			refreshing = false;
 			loading_box.Visible = false;
 			get_count();
@@ -853,6 +855,7 @@ namespace HariOmImpex_LMS
 				if (!query_builder_text.Contains("delete", StringComparison.OrdinalIgnoreCase))
 				{
 					query_ststxt.Text = "Executing query..";
+					client_basic_datagrid.DataSource = null;
 					query_builder_worker.RunWorkerAsync();
 				}
 			}
@@ -1278,8 +1281,8 @@ namespace HariOmImpex_LMS
 
         private void splitContainer6_SplitterMoved(object sender, SplitterEventArgs e)
         {
-
-        }
+			
+		}
 
         private void splitContainer6_Panel1_MouseEnter(object sender, EventArgs e)
         {
@@ -1296,10 +1299,12 @@ namespace HariOmImpex_LMS
 			if (splitContainer6.Panel1Collapsed == false)
 			{
 				splitContainer6.Panel1Collapsed = true;
+				optionsToolStripMenuItem.Visible = true;
 			}
 			else
 			{
 				splitContainer6.Panel1Collapsed = false;
+				optionsToolStripMenuItem.Visible = false;
 			}
 			
 		}
@@ -1340,6 +1345,17 @@ namespace HariOmImpex_LMS
 				sts_txt.Text = "Error occurred.. Selected query not deleted..";
 			}
 
+		}
+
+        private void splitContainer6_VisibleChanged(object sender, EventArgs e)
+        {
+			
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			splitContainer6.Panel1Collapsed = false;
+			optionsToolStripMenuItem.Visible = false;
 		}
     }
 
