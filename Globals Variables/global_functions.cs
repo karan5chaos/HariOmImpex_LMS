@@ -27,6 +27,34 @@ namespace HariOmImpex_LMS
 			return dataSet;
 		}
 
+		public static DataSet load_bookmarks(string sql)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Expected O, but got Unknown
+			//IL_0029: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0034: Expected O, but got Unknown
+			SQLiteConnection val = new SQLiteConnection();
+			((DbConnection)(object)val).ConnectionString = "Data Source=" + global_vars.getBookmarks();
+			((DbConnection)(object)val).Open();
+			DataSet dataSet = new DataSet();
+			((DataAdapter)new SQLiteDataAdapter(sql, val)).Fill(dataSet);
+			((DbConnection)(object)val).Close();
+			return dataSet;
+		}
+
+		public static void ex_bookmark_query(string sql)
+		{
+			//IL_0000: Unknown result type (might be due to invalid IL or missing references)
+			//IL_0006: Expected O, but got Unknown
+			//IL_0023: Unknown result type (might be due to invalid IL or missing references)
+			//IL_002d: Expected O, but got Unknown
+			SQLiteConnection val = new SQLiteConnection();
+			((DbConnection)(object)val).ConnectionString = "Data Source=" + global_vars.getBookmarks();
+			((DbConnection)(object)val).Open();
+			((DbCommand)new SQLiteCommand(sql, val)).ExecuteNonQuery();
+			((DbConnection)(object)val).Close();
+		}
+
 		public static void execute_command(string sql)
 		{
 			//IL_0000: Unknown result type (might be due to invalid IL or missing references)

@@ -51,6 +51,7 @@ namespace HariOmImpex_LMS
             this.edit_mode_button = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleSearchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exportCurrentViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.browserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -125,11 +126,11 @@ namespace HariOmImpex_LMS
             this.label1 = new System.Windows.Forms.Label();
             this.autocompleteMenu1 = new AutocompleteMenuNS.AutocompleteMenu();
             this.check_queries = new System.Windows.Forms.Timer(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.digi_time = new System.Windows.Forms.Timer(this.components);
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.main_splitcontainer)).BeginInit();
             this.main_splitcontainer.Panel1.SuspendLayout();
             this.main_splitcontainer.Panel2.SuspendLayout();
@@ -178,13 +179,13 @@ namespace HariOmImpex_LMS
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
             this.splitContainer6.Panel1.SuspendLayout();
             this.splitContainer6.Panel2.SuspendLayout();
             this.splitContainer6.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox2
@@ -294,7 +295,8 @@ namespace HariOmImpex_LMS
             this.loading_box,
             this.edit_mode_button,
             this.toggleSearchToolStripMenuItem1,
-            this.exportCurrentViewToolStripMenuItem});
+            this.exportCurrentViewToolStripMenuItem,
+            this.browserToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(3, 17);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Size = new System.Drawing.Size(922, 27);
@@ -366,6 +368,13 @@ namespace HariOmImpex_LMS
             this.exportCurrentViewToolStripMenuItem.Size = new System.Drawing.Size(130, 23);
             this.exportCurrentViewToolStripMenuItem.Text = "Export current view";
             this.exportCurrentViewToolStripMenuItem.Click += new System.EventHandler(this.exportCurrentViewToolStripMenuItem_Click);
+            // 
+            // browserToolStripMenuItem
+            // 
+            this.browserToolStripMenuItem.Name = "browserToolStripMenuItem";
+            this.browserToolStripMenuItem.Size = new System.Drawing.Size(58, 23);
+            this.browserToolStripMenuItem.Text = "Browser";
+            this.browserToolStripMenuItem.Click += new System.EventHandler(this.browserToolStripMenuItem_Click);
             // 
             // splitContainer2
             // 
@@ -1340,13 +1349,13 @@ namespace HariOmImpex_LMS
             this.splitContainer5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.splitContainer6.Panel1.ResumeLayout(false);
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1450,6 +1459,7 @@ namespace HariOmImpex_LMS
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ToolStripMenuItem login_console;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem browserToolStripMenuItem;
     }
 }
 

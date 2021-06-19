@@ -46,9 +46,26 @@ namespace HariOmImpex_LMS
 			set;
 		}
 
+		public static int detail_type
+		{
+			get;
+			set;
+		}
+
+		public static int client_id
+		{
+			get;
+			set;
+		}
+
 		public static string getDatabasePath()
 		{
 			return Settings.Default.database_path;
+		}
+
+		public static string getBookmarks()
+		{
+			return Settings.Default.bookmark_path;
 		}
 	}
 }

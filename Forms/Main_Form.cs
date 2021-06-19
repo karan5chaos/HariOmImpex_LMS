@@ -391,9 +391,10 @@ namespace HariOmImpex_LMS
 		}
 
 
-		
 
-        private void Form1_Load(object sender, EventArgs e)
+		Import_data_form import_Data_Form;
+
+		private void Form1_Load(object sender, EventArgs e)
         {
 			splitContainer6.Panel1Collapsed = true;
 
@@ -401,6 +402,12 @@ namespace HariOmImpex_LMS
             backupManagerToolStripMenuItem.Text = "Backup\nManager";
             applicationLogToolStripMenuItem.Text = "Activity\nLog";
 			login_console.Text = "Admin\nConsole";
+
+			import_Data_Form = new Import_data_form();
+            import_Data_Form.Show();
+			import_Data_Form.Hide();
+            
+            
 
             digi_time.Start();
 
@@ -1356,6 +1363,21 @@ namespace HariOmImpex_LMS
         {
 			splitContainer6.Panel1Collapsed = false;
 			optionsToolStripMenuItem.Visible = false;
+		}
+
+        private void browserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+			if(!import_Data_Form.IsDisposed)
+            {
+				import_Data_Form.Close();
+				import_Data_Form.Dispose();
+
+			}
+			
+
+			new Import_data_form().Show();
+
 		}
     }
 

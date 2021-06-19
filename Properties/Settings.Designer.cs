@@ -153,5 +153,17 @@ namespace HariOmImpex_LMS.Properties {
                 this["save_mode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\RajjaLogistics\\bookmarks\\bookmarks.db")]
+        public string bookmark_path {
+            get {
+                return ((string)(this["bookmark_path"]));
+            }
+            set {
+                this["bookmark_path"] = value;
+            }
+        }
     }
 }
