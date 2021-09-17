@@ -86,14 +86,14 @@ namespace HariOmImpex_LMS.Forms
             browser.TitleChanged += Browser_TitleChanged;
             Browser = browser;
 
-            Browser.DownloadHandler = new downlo
+            //Browser.DownloadHandler = new downlo
 
             
 
-            string downloadPath = @"C:\Users\SanjayR\Downloads" + downloadItem.SuggestedFileName;
-            showDialog = false;
-            MessageBox.Show("Downloaded");
-            return true;
+            //string downloadPath = @"C:\Users\SanjayR\Downloads" + downloadItem.SuggestedFileName;
+            //showDialog = false;
+            //MessageBox.Show("Downloaded");
+            //return true;
 
 
             this.panel3.Controls.Add(browser);

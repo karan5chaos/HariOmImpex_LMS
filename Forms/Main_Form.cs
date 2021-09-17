@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
@@ -15,10 +17,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ExcelDataReader;
 using HariOmImpex_LMS.Forms;
 using HariOmImpex_LMS.Globals_Variables;
 using HariOmImpex_LMS.Properties;
+using Spire.Xls;
 using Transitions;
+using Excels = Microsoft.Office.Interop.Excel;
+
+
 
 namespace HariOmImpex_LMS
 {
@@ -44,6 +51,7 @@ namespace HariOmImpex_LMS
 
 		public Form1()
         {
+			//ConsoleApp2.Program
             InitializeComponent();
 
             Properties.Settings.Default.PropertyChanged += Default_PropertyChanged;
@@ -119,9 +127,14 @@ namespace HariOmImpex_LMS
 			{
 				commit_button.Enabled = true;
 			}
+
+		
+		
+
+
 		}
 
-        private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e)
+		private void Default_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
 
 				if (Properties.Settings.Default.save_mode == 0)
@@ -260,6 +273,8 @@ namespace HariOmImpex_LMS
 			global_functions.Entry_log(0, "load_all_data - start", "");
 
 			get_column_names();
+
+
 			query = "select * from client_data;";
 			load_database();
 
@@ -334,25 +349,46 @@ namespace HariOmImpex_LMS
 
         private void button2_Click(object sender, EventArgs e)
         {
-			if (File.Exists(global_vars.getDatabasePath()))
+
+			if (tabControl1.SelectedTab == tabPage1)
 			{
-				if (!get_data.IsBusy)
+				if (File.Exists(global_vars.getDatabasePath()))
 				{
-					query = "select * from client_data where " + comboBox1.SelectedItem?.ToString() + " like '%" + textBox1.Text + "%';";
-					loading_box.Visible = true;
-					load_database();
+					if (!get_data.IsBusy)
+					{
+						query = "select * from client_data where " + comboBox1.SelectedItem?.ToString() + " like '%" + textBox1.Text + "%';";
+						loading_box.Visible = true;
+						load_database();
+					}
+					else
+					{
+						get_data.CancelAsync();
+						loading_box.Visible = false;
+						sts_txt.Text = "Already fetching data.. Please search again..";
+					}
 				}
 				else
 				{
-					get_data.CancelAsync();
-					loading_box.Visible = false;
-					sts_txt.Text = "Already fetching data.. Please search again..";
+					sts_txt.Text = "Network path unavailable. Please check if computer is connected to internet.";
 				}
 			}
-			else
+
+		    if(tabControl1.SelectedTab==tabPage2)
 			{
-				sts_txt.Text = "Network path unavailable. Please check if computer is connected to internet.";
+				if (string.IsNullOrEmpty(textBox1.Text))
+				{
+					(dataGridView1.DataSource as DataTable).DefaultView.RowFilter = string.Empty;
+				}
+				else
+				{
+					var Rowfilter = string.Format("CONVERT([{0}], System.String) like '%{1}%'",
+							 comboBox1.Text.Trim(), textBox1.Text.Trim());
+					(dataGridView1.DataSource as DataTable).DefaultView.RowFilter = Rowfilter;
+				}
 			}
+
+
+			
 		}
 
 		private void load_database()
@@ -390,6 +426,55 @@ namespace HariOmImpex_LMS
 			}
 		}
 
+		private DataTable ReadExcelFile(string sheetName, string path)
+		{
+
+			using (OleDbConnection conn = new OleDbConnection())
+			{
+				DataTable dt = new DataTable();
+				string Import_FileName = path;
+				string fileExtension = Path.GetExtension(Import_FileName);
+				if (fileExtension == ".xls")
+					conn.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 8.0;HDR=YES;'";
+				if (fileExtension == ".xlsx")
+					conn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+				using (OleDbCommand comm = new OleDbCommand())
+				{
+					comm.CommandText = "Select * from [" + sheetName + "$]";
+					comm.Connection = conn;
+					using (OleDbDataAdapter da = new OleDbDataAdapter())
+					{
+						da.SelectCommand = comm;
+						da.Fill(dt);
+						return dt;
+					}
+				}
+			}
+		}
+
+		public DataTable RemoveDuplicateRows(DataTable dTable, string colName)
+		{
+			Hashtable hTable = new Hashtable();
+			ArrayList duplicateList = new ArrayList();
+
+			//Add list of all the unique item value to hashtable, which stores combination of key, value pair.
+			//And add duplicate item value in arraylist.
+			foreach (DataRow drow in dTable.Rows)
+			{
+				if (hTable.Contains(drow[colName]))
+					duplicateList.Add(drow);
+				else
+					hTable.Add(drow[colName], string.Empty);
+			}
+
+			//Removing a list of duplicate items from datatable.
+			foreach (DataRow dRow in duplicateList)
+				dTable.Rows.Remove(dRow);
+
+			//Datatable which contains unique records will be return as output.
+			return dTable;
+		}
+
 
 
 		Import_data_form import_Data_Form;
@@ -403,9 +488,9 @@ namespace HariOmImpex_LMS
             applicationLogToolStripMenuItem.Text = "Activity\nLog";
 			login_console.Text = "Admin\nConsole";
 
-			import_Data_Form = new Import_data_form();
-            import_Data_Form.Show();
-			import_Data_Form.Hide();
+			//import_Data_Form = new Import_data_form();
+   //         import_Data_Form.Show();
+			//import_Data_Form.Hide();
             
             
 
@@ -447,8 +532,18 @@ namespace HariOmImpex_LMS
 			check_reminders.Start();
 			check_queries.Start();
 
+			
+			//List<string> notes = new List<string>();
+			//notes.Add("1) this is a big note man.");
+			//notes.Add("2) this is a big note man.");
+			//notes.Add("3) this is a big note man.");
+
+			//foreach(string note in notes)
+			//{
+				
 
 
+           // }
 		}
 
 		private void set_access_mode()
@@ -1378,6 +1473,457 @@ namespace HariOmImpex_LMS
 
 			new Import_data_form().Show();
 
+		}
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+			sts_txt.Text = "Reading excel file";
+			read_excel_worker.RunWorkerAsync();
+			
+			//Workbook workbook = new Workbook();
+
+
+			//workbook.LoadFromFile("C:/Users/Karan/Downloads/123  IGST Status 24-07-2018 - Copy.xlsx");
+
+			//Worksheet sheet = workbook.Worksheets[0];
+
+			////sheet.range
+			//DataTable dataTable = sheet.ExportDataTable();
+
+			
+
+			//dataGridView1.DataSource =;
+
+		}
+
+
+		//DataTable dataTable;
+		string excelfile = "";
+
+		string dataset_file;
+		private void read_excel_worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+
+			//using (Workbook workbook = new Workbook())
+			//{
+			//	workbook.LoadFromFile(excelfile);
+
+			//	Worksheet sheet = workbook.Worksheets[0];
+
+
+			//	dataTable = new DataTable();
+			//	dataTable = sheet.ExportDataTable();
+			//	view = new DataView(dataTable);
+
+			//	read_excel_worker.ReportProgress(100, dataTable);
+			//}
+
+			
+
+
+			string filepath = excelfile;
+	
+            using (var stream = File.Open(filepath, FileMode.Open, FileAccess.Read))
+            {
+              
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+
+					var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+					{
+
+						// Gets or sets a callback to obtain configuration options for a DataTable. 
+						ConfigureDataTable = (tableReader) => new ExcelDataTableConfiguration()
+						{
+							UseHeaderRow = true,
+
+							// Gets or sets a callback to determine which row is the header row. 
+							// Only called when UseHeaderRow = true.
+							//ReadHeaderRow = (rowReader) => {
+							//	// F.ex skip the first row and use the 2nd row as column headers:
+							//	rowReader.Read();
+							//}
+						}
+					});
+
+
+					read_excel_worker.ReportProgress(100, result.Tables[0].AsDataView());
+
+					//result = null;
+					result.Dispose();
+					
+                    // The result of each spreadsheet is in result.Tables
+                }
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+				
+            }
+        }
+
+
+		private const int totalRecords = 43;
+		private const int pageSize = 10;
+		List<DataTable> tabless = new List<DataTable>();
+		//BindingSource SBind;
+		private void read_excel_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+
+			var results = e.UserState as DataView;
+
+
+			//dataTable.DataSet.EnforceConstraints = true;
+
+			//DataTable dataTable = new DataTable();
+			//dataTable.BeginLoadData();
+			//dataTable.ReadXml(dataset_file);
+
+
+			////tabless = CloneTable(dataTable, 1000);
+			////dataTable.Rows.Cast<System.Data.DataRow>().Take(50);
+
+			//dataTable.EndLoadData();
+
+
+
+
+			//dataTable = dataTable.Rows.Cast<DataRow>().
+			//Where(row => !row.ItemArray.All(field => field is System.DBNull ||
+			//string.Compare((field as string).Trim(), string.Empty) == 0)).CopyToDataTable();
+
+
+
+			//dataGridView1.AutoGenerateColumns = false;
+			//dataGridView1.DataSource = dataTable;
+
+			//
+			//
+			//dataTable.AsEnumerable().Skip(100).Take(25);
+
+			//	bindingSource2.DataSource = dataTable;
+			////	bindingNavigator1.BindingSource = bindingSource2;
+			//	bindingSource1.CurrentChanged += BindingSource2_CurrentChanged;
+			//	bindingSource1.DataSource = new PageOffsetList();
+
+			//dataTable.AcceptChanges();
+			dataGridView1.DataSource = results;
+			
+
+			dataGridView1.ReadOnly = false;
+
+			comboBox1.Items.Clear();
+			foreach (DataGridViewColumn column in dataGridView1.Columns)
+			{
+
+				comboBox1.Items.Add(column.HeaderText);
+			
+			}
+
+		}
+
+
+		private List<DataTable> CloneTable(DataTable tableToClone, int countLimit)
+		{
+			List<DataTable> tables = new List<DataTable>();
+			int count = 0;
+			DataTable copyTable = null;
+			foreach (DataRow dr in tableToClone.Rows)
+			{
+				if ((count++ % countLimit) == 0)
+				{
+					copyTable = new DataTable();
+					// Clone the structure of the table.
+					copyTable = tableToClone.Clone();
+					// Add the new DataTable to the list.
+					tables.Add(copyTable);
+				}
+				// Import the current row.
+				copyTable.ImportRow(dr);
+			}
+			return tables;
+		}
+
+
+		private void read_excel_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+			//dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+			sts_txt.Text = "Total rows: " + dataGridView1.Rows.Count;
+
+			//dataTable = null;
+			//dataTable.Dispose();
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+
+			// or even better, use .DisableResizing. Most time consuming enum is DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
+
+			// set it to false if not needed
+			//	dataGridView1.RowHeadersVisible = tru;
+
+			//dataTable.Dispose();
+			//sts_txt.Text = "setting dataset";
+			//	dataGridView1.DataSource = dataTable;
+
+		}
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+			if (!save_sheet_worker.IsBusy)
+			{
+				toolStripMenuItem4.Text = "Saving...";
+				save_sheet_worker.RunWorkerAsync();
+
+			}
+			else
+			{
+				sts_txt.Text = "Saving already in progress.. Please wait for the process to finish.";
+			
+			}
+					
+
+		}
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+			try
+			{
+				//dataTable.Rows[e.RowIndex][e.ColumnIndex] = dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString();
+				//dataGridView1.DataSource.AcceptChanges();
+				dataGridView1.DataSource = dataGridView1.DataSource as DataTable;
+				//dataTable.AcceptChanges();
+				//var source = ((DataTable)SBind.DataSource);
+				//update_query.ReportProgress(0, source);
+			}
+			catch (Exception ex)
+			{
+				//update_query.CancelAsync();
+				//global_functions.Entry_log(1, "update_query - " + ex.Message, ex.StackTrace);
+			}
+		}
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+			
+
+		}
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+		
+		}
+
+        private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+			//dataGridView1.Rows[e.RowIndex].Cells[0].Value = (e.RowIndex + 1).ToString();
+		}
+
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+			
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+			if (e.TabPage == tabPage1)
+			{
+				load_all_data();
+
+			}
+			if (e.TabPage == tabPage2)
+			{
+				comboBox1.Items.Clear();
+
+				if (dataGridView1.Columns.Count > 0)
+				{
+					foreach (DataGridViewColumn column in dataGridView1.Columns)
+					{
+						comboBox1.Items.Add(column.HeaderText);
+					
+					}
+				
+				}
+
+			}
+		}
+
+        private void panel12_DragEnter(object sender, DragEventArgs e)
+        {
+			
+		}
+
+        private void panel12_DragDrop(object sender, DragEventArgs e)
+        {
+			
+				
+				//textBox1.Text = file.First();
+
+			//excelfile = file;
+			
+		}
+
+        private void listView1_SizeChanged(object sender, EventArgs e)
+        {
+			listView1.Columns[0].Width = listView1.Width;
+		}
+
+        private void save_sheet_worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+
+			//ExportDataTableToExcel(dataGridView1.DataSource as DataTable, "C:/Rajja_Logistics/insertTableToExcel.xlsx");
+			//using (Workbook book = new Workbook())
+			//{
+			//    book.Version = ExcelVersion.Version2010;
+			//    using (Worksheet sheet = book.Worksheets[0])
+			//    {
+
+			//        //sheet.SetCellValue();
+			//        sheet.InsertDataTable(dataGridView1.DataSource as DataTable, true, 1, 1);
+			//        book.SaveAsXml("C:/Rajja_Logistics/insertTableToExcel.xml");
+			//        //dataTable.Dispose();
+
+
+			//    }
+			//}
+
+			//var sb = new StringBuilder();
+
+
+			
+
+			var path = "C:/Rajja_Logistics/insertTableToExcel.csv";
+            var file = File.Create(path);
+			file.Close();
+			
+			using (FileStream fs = File.Open(path,FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
+			using (BufferedStream bs = new BufferedStream(fs))
+			using (StreamWriter w = new StreamWriter(bs))
+			{
+
+				var headers = dataGridView1.Columns.Cast<DataGridViewColumn>();
+				w.WriteLine(string.Join(",", headers.Select(column => "\"" + column.HeaderText + "\"").ToArray()));
+				var counter = 0;
+				
+				foreach (DataGridViewRow row in dataGridView1.Rows)
+				{
+					counter++;
+					if (counter > 1000)
+					{
+						w.Flush();
+						bs.Flush();
+						fs.Flush();
+
+						counter = 0;
+					}
+					var cells = row.Cells.Cast<DataGridViewCell>();
+					var string_cells = (string.Join(",", cells.Select(cell => "\"" + cell.Value + "\"").ToArray()));
+
+
+					w.WriteLine(string_cells);
+
+
+					
+
+				}
+			}
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+
+
+		}
+
+	
+
+
+		private void save_sheet_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+			toolStripMenuItem4.Text = "Save";
+			
+
+		}
+
+        private void addPhoneColumnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			var dataTable = dataGridView1.DataSource as DataTable;
+
+			if (dataGridView1.Rows.Count > 0 && dataTable!=null && !dataTable.Columns.Contains("Phone_number"))
+			{
+				
+				dataTable.Columns.Add("Phone_number");
+				dataGridView1.DataSource = dataTable;
+			
+			}
+        }
+
+		//int table_num = 1;
+
+        private void nextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			//var tab_c = tabless.Count;
+			//sts_txt.Text = tab_c.ToString();
+			//int current_table = 0;
+
+			//if (current_table <= tab_c)
+			//{
+			//	current_table++;
+			//	dataGridView1.DataSource =  tabless[current_table];
+		
+			//}
+
+			
+			//MessageBox.Show(tab_c.ToString());
+
+			//dataTable.AsEnumerable().Skip(25).Take(25);
+			
+			
+		}
+
+        private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_DragDrop(object sender, DragEventArgs e)
+        {
+			string[] file = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+			if (file != null && file.Any())
+			{
+				var datatable = dataGridView1.DataSource as DataTable;
+				if (datatable != null)
+				{
+					datatable.Dispose();
+				}
+				
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+
+				excelfile = file.First();
+
+				ListViewItem li = new ListViewItem();
+				li.ImageIndex = 0;
+				li.Text = excelfile;
+				listView1.Items.Add(li);
+				sts_txt.Text = "Loading file " + Path.GetFileNameWithoutExtension(excelfile) + " ...";
+
+				dataGridView1.DataSource = null;
+				//c_AdvancedDataGrid1.DataSource = excelfile;
+
+				read_excel_worker.RunWorkerAsync();
+			}
+		}
+
+        private void dataGridView1_DragEnter(object sender, DragEventArgs e)
+        {
+			if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
 		}
     }
 
