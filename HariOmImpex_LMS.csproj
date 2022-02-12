@@ -301,6 +301,12 @@
     <Compile Include="Forms\Changelogs_form.Designer.cs">
       <DependentUpon>Changelogs_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Chat_Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Chat_Window.Designer.cs">
+      <DependentUpon>Chat_Window.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Console_login_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -411,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Changelogs_form.resx">
       <DependentUpon>Changelogs_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Chat_Window.resx">
+      <DependentUpon>Chat_Window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Console_login_form.resx">
       <DependentUpon>Console_login_form.cs</DependentUpon>

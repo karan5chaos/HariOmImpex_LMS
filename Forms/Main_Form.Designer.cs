@@ -80,6 +80,8 @@ namespace HariOmImpex_LMS
             this.decrease_font_btn = new System.Windows.Forms.ToolStripMenuItem();
             this.increase_font_btn = new System.Windows.Forms.ToolStripMenuItem();
             this.commit_button = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.previousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -440,6 +442,7 @@ namespace HariOmImpex_LMS
             this.browserToolStripMenuItem.Name = "browserToolStripMenuItem";
             this.browserToolStripMenuItem.Size = new System.Drawing.Size(78, 23);
             this.browserToolStripMenuItem.Text = "Browser";
+            this.browserToolStripMenuItem.Visible = false;
             this.browserToolStripMenuItem.Click += new System.EventHandler(this.browserToolStripMenuItem_Click);
             // 
             // splitContainer2
@@ -718,7 +721,9 @@ namespace HariOmImpex_LMS
             this.menuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.decrease_font_btn,
             this.increase_font_btn,
-            this.commit_button});
+            this.commit_button,
+            this.previousToolStripMenuItem,
+            this.nextToolStripMenuItem1});
             this.menuStrip5.Location = new System.Drawing.Point(0, 0);
             this.menuStrip5.Name = "menuStrip5";
             this.menuStrip5.Size = new System.Drawing.Size(908, 28);
@@ -753,12 +758,33 @@ namespace HariOmImpex_LMS
             // 
             // commit_button
             // 
+            this.commit_button.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.commit_button.Image = global::HariOmImpex_LMS.Properties.Resources.database_save;
             this.commit_button.Name = "commit_button";
             this.commit_button.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.commit_button.Size = new System.Drawing.Size(117, 24);
             this.commit_button.Text = "Commit changes";
             this.commit_button.Click += new System.EventHandler(this.commitChangesToolStripMenuItem_Click);
+            // 
+            // nextToolStripMenuItem1
+            // 
+            this.nextToolStripMenuItem1.Enabled = false;
+            this.nextToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("nextToolStripMenuItem1.Image")));
+            this.nextToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.nextToolStripMenuItem1.Name = "nextToolStripMenuItem1";
+            this.nextToolStripMenuItem1.Size = new System.Drawing.Size(57, 24);
+            this.nextToolStripMenuItem1.Text = "Next";
+            this.nextToolStripMenuItem1.Click += new System.EventHandler(this.nextToolStripMenuItem1_Click);
+            // 
+            // previousToolStripMenuItem
+            // 
+            this.previousToolStripMenuItem.Enabled = false;
+            this.previousToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("previousToolStripMenuItem.Image")));
+            this.previousToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.previousToolStripMenuItem.Name = "previousToolStripMenuItem";
+            this.previousToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.previousToolStripMenuItem.Text = "Previous";
+            this.previousToolStripMenuItem.Click += new System.EventHandler(this.previousToolStripMenuItem_Click);
             // 
             // groupBox6
             // 
@@ -1442,6 +1468,7 @@ namespace HariOmImpex_LMS
             this.uISizeToolStripMenuItem.Text = "Browser";
             this.uISizeToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.uISizeToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.uISizeToolStripMenuItem.Click += new System.EventHandler(this.uISizeToolStripMenuItem_Click);
             // 
             // login_console
             // 
@@ -1984,6 +2011,8 @@ namespace HariOmImpex_LMS
         private System.Windows.Forms.ToolStripMenuItem addAddressColumnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nextToolStripMenuItem;
         private System.Windows.Forms.BindingSource bindingSource2;
+        private System.Windows.Forms.ToolStripMenuItem nextToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem previousToolStripMenuItem;
     }
 }
 

@@ -268,15 +268,28 @@ namespace HariOmImpex_LMS
 			}
 		}
 
+		public int fromidx = 0;
+		public int numrows = 100;
+
+		bool first_load = true;
 		private void load_all_data()
 		{
 			global_functions.Entry_log(0, "load_all_data - start", "");
 
 			get_column_names();
 
+			if (first_load)
+			{
+				query = "select * from client_data limit " + fromidx + ", " + numrows + ";";
+			}
+				load_database();
 
-			query = "select * from client_data;";
-			load_database();
+			if (first_load)
+			{
+				fromidx += 100;
+			}
+			
+			    first_load = false;
 
 		}
 
@@ -488,11 +501,11 @@ namespace HariOmImpex_LMS
             applicationLogToolStripMenuItem.Text = "Activity\nLog";
 			login_console.Text = "Admin\nConsole";
 
-			//import_Data_Form = new Import_data_form();
-   //         import_Data_Form.Show();
-			//import_Data_Form.Hide();
-            
-            
+            import_Data_Form = new Import_data_form();
+            import_Data_Form.Show();
+            import_Data_Form.Hide();
+
+
 
             digi_time.Start();
 
@@ -709,6 +722,9 @@ namespace HariOmImpex_LMS
 			refreshing = false;
 			loading_box.Visible = false;
 			get_count();
+
+			nextToolStripMenuItem1.Enabled = true;
+			previousToolStripMenuItem.Enabled = true;
 
 			global_functions.Entry_log(0, "get_data_dowork - success", "");
 		}
@@ -1463,15 +1479,6 @@ namespace HariOmImpex_LMS
         private void browserToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-			if(!import_Data_Form.IsDisposed)
-            {
-				import_Data_Form.Close();
-				import_Data_Form.Dispose();
-
-			}
-			
-
-			new Import_data_form().Show();
 
 		}
 
@@ -1549,7 +1556,7 @@ namespace HariOmImpex_LMS
 					});
 
 
-					read_excel_worker.ReportProgress(100, result.Tables[0].AsDataView());
+					read_excel_worker.ReportProgress(100, result.Tables[0]);
 
 					//result = null;
 					result.Dispose();
@@ -1571,7 +1578,7 @@ namespace HariOmImpex_LMS
         {
 
 
-			var results = e.UserState as DataView;
+			var results = e.UserState as DataTable;
 
 
 			//dataTable.DataSet.EnforceConstraints = true;
@@ -1616,9 +1623,8 @@ namespace HariOmImpex_LMS
 			comboBox1.Items.Clear();
 			foreach (DataGridViewColumn column in dataGridView1.Columns)
 			{
-
 				comboBox1.Items.Add(column.HeaderText);
-			
+
 			}
 
 		}
@@ -1924,6 +1930,60 @@ namespace HariOmImpex_LMS
         private void dataGridView1_DragEnter(object sender, DragEventArgs e)
         {
 			if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+		}
+
+        private void uISizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+			if (!import_Data_Form.IsDisposed)
+			{
+				import_Data_Form.Close();
+				import_Data_Form.Dispose();
+
+			}
+
+			new Import_data_form().Show();
+		}
+		
+        private void nextToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+			if (fromidx >= 0)
+			{
+				previousToolStripMenuItem.Enabled = true;
+			}
+
+			if (client_basic_datagrid.Rows.Count < 100)
+			{
+				nextToolStripMenuItem1.Enabled = false;
+			}
+			else
+			{
+				nextToolStripMenuItem1.Enabled = true;
+				query = "select * from client_data limit " + (fromidx + 100) + ", " + numrows + ";";
+				load_database();
+				fromidx += 100;
+			}
+		}
+
+        private void previousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			if (client_basic_datagrid.Rows.Count >= 100)
+			{
+				nextToolStripMenuItem1.Enabled = true;
+			}
+			//numrows -= 100;
+			if (fromidx == 0)
+			{
+				previousToolStripMenuItem.Enabled = false;
+			}
+			else
+			{
+				previousToolStripMenuItem.Enabled = true;
+				query = "select * from client_data limit " + (fromidx - 100) + ", " + numrows + ";";
+				load_database();
+				fromidx -= 100;
+			}
+
 		}
     }
 
